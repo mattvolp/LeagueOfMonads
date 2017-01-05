@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>LeagueOfMonads</id>
+		<version>11.1</version>
+		<authors>Anthony Leatherwood</authors>
+		<owners>aleatherwood</owners>
+		<licenseUrl>https://github.com/adleatherwood/LeagueOfMonads/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/adleatherwood/DrivenAz</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/adleatherwood/DrivenAz/master/icon.png</iconUrl>
+		<description>A gathering place for things that identify as monads but are C# in orientation</description>
+			<!--<summary>
+			</summary>-->
+		<releaseNotes>Please visit the github site for release notes.</releaseNotes>
+		<!--<copyright>Copyright 2012</copyright>-->
+		<tags>monad rop railway</tags>    
+	</metadata>  
+	<files>
+		<file src="..\..\Release\*.dll" target="lib\net45" /> 
+		<file src="..\..\Release\*.exe" target="lib\net45" /> 
+		<file src="..\..\Release\*.pdb" target="lib\net45" /> 			 
+		<file src="..\..\Release\*.xml" target="lib\net45" /> 			 
+	</files>
+</package>
