@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LeagueOfMonads</id>
-		<version>11.1</version>
+		<version>0.1.0</version>
 		<authors>Anthony Leatherwood</authors>
 		<owners>aleatherwood</owners>
 		<licenseUrl>https://github.com/adleatherwood/LeagueOfMonads/blob/master/LICENSE</licenseUrl>
@@ -13,7 +13,7 @@
 			</summary>-->
 		<releaseNotes>Please visit the github site for release notes.</releaseNotes>
 		<!--<copyright>Copyright 2012</copyright>-->
-		<tags>monad rop railway</tags>    
+		<tags>monad rop railway league monads</tags>    
 	</metadata>  
 	<files>
 		<file src="..\..\Release\*.dll" target="lib\net45" /> 

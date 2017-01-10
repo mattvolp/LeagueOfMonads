@@ -180,5 +180,10 @@ namespace LeagueOfMonads
       {
          return new Result<T>(e);
       }
+
+      public static Result<T> Fail<T>(string message)
+      {         
+         return new Result<T>(new Exception(message));
+      }
    }   
 }

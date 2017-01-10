@@ -155,5 +155,16 @@ namespace LeagueOfMonads
       {
          return new Option<T>();
       }
+
+      public static Option<T> From<T>(T value)
+      {
+         return new Option<T>(value);
+      }
+      
+      public static T? ToNullable<T>(this Option<T> o)
+         where T : struct
+      {
+         return o.Value;
+      }      
    }   
 }

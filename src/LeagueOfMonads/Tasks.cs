@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 
 namespace LeagueOfMonads
-{   
+{
    public static class Tasks
    {
       public static TResult Call<T, TResult>(this Task<T> t, TResult r)
@@ -124,7 +124,7 @@ namespace LeagueOfMonads
             throw;
          }
       }
-      
+
       public static async Task<T> Tee<T>(this Task<T> t, Func<T, Task> f)
       {
          await f(await t);
@@ -141,7 +141,7 @@ namespace LeagueOfMonads
       {
          try
          {
-            f(await t);            
+            f(await t);
          }
          catch (Exception e)
          {
@@ -247,6 +247,12 @@ namespace LeagueOfMonads
             await h(await t, e);
             throw;
          }
-      }      
+      }
+
+      #region contructors
+
+
+
+      #endregion
    }
 }
