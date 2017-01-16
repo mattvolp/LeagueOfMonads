@@ -25,7 +25,7 @@ To provide a collection of monads that work together seemlessly and have a commo
 | Call            | Haskell/Then     | ```Monad<A> . Call<B>(B b) -> B```
 | Ignore          | All              | ```Monad<A> . Ignore() -> void```
 | Map             | All              | ```Monad<A> . Map<B>(Func<A, B> func) -> Monad<B>```
-| MapOrCatch      | Rop, C#          | ```Monad<A> . MapOrCatch<B>(Func<A, B> f, Func<A, Exception, B> handler) -> Monad<B>```
+| MapOrCatch      | Rop, C#          | ```Monad<A> . MapOrCatch<B>(Func<A, B> f, Func<A, Exception, Monad<B>> handler) -> Monad<B>```
 | MapOrThrow      | Rop, C#          | ```Monad<A> . MapOrThrow<B>(Func<A, B> f, Action<A,Exception> handler) -> Monad<B>```
 | MapTo           | New              | ```Monad<A> . MapTo<B>(Func<A, B> func) -> B```
 | Tee             | Rop              | ```Monad<A> . Tee(Action<A> action) -> Monad<A>```

@@ -2,18 +2,18 @@
 <package >
 	<metadata>
 		<id>LeagueOfMonads</id>
-		<version>0.1.0</version>
+		<version>0.3.0</version>
 		<authors>Anthony Leatherwood</authors>
 		<owners>aleatherwood</owners>
 		<licenseUrl>https://github.com/adleatherwood/LeagueOfMonads/blob/master/LICENSE</licenseUrl>
-		<projectUrl>https://github.com/adleatherwood/DrivenAz</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/adleatherwood/DrivenAz/master/icon.png</iconUrl>
+		<projectUrl>https://github.com/adleatherwood/LeagueOfMonads</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/adleatherwood/LeagueOfMonads/master/icon.png</iconUrl>
 		<description>A gathering place for things that identify as monads but are C# in orientation</description>
 			<!--<summary>
 			</summary>-->
 		<releaseNotes>Please visit the github site for release notes.</releaseNotes>
 		<!--<copyright>Copyright 2012</copyright>-->
-		<tags>monad rop railway league monads</tags>    
+		<tags>monad rop railway oriented league monads</tags>    
 	</metadata>  
 	<files>
 		<file src="..\..\Release\*.dll" target="lib\net45" /> 

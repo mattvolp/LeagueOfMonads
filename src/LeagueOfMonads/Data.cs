@@ -31,7 +31,7 @@ namespace LeagueOfMonads
          return new Data<TResult>(f(Value));
       }
 
-      public virtual Data<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, TResult> handler)
+      public virtual Data<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, Data<TResult>> handler)
       {
          try
          {

@@ -39,7 +39,7 @@ namespace LeagueOfMonads
             : Result.Fail<TResult>(Failure);
       }
       
-      public virtual Result<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, TResult> h)
+      public virtual Result<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, Result<TResult>> h)
       {
          try
          {

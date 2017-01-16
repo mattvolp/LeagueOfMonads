@@ -40,7 +40,7 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
-      public virtual Option<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, TResult> handler)
+      public virtual Option<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, Option<TResult>> handler)
       {
          try
          {
