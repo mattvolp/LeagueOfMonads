@@ -20,19 +20,19 @@ To provide a collection of monads that work together seemlessly and have a commo
 
 ### Single-Type Monad Functions
 
-| Name            | Sources          | Siganture   |
-| ---             | ---              | ---         |
-| Call            | Haskell/Then     | ```Monad<A> . Call<B>(B b) -> B```
-| Ignore          | All              | ```Monad<A> . Ignore() -> void```
-| Map             | All              | ```Monad<A> . Map<B>(Func<A, B> func) -> Monad<B>```
-| MapOrCatch      | Rop, C#          | ```Monad<A> . MapOrCatch<B>(Func<A, B> f, Func<A, Exception, Monad<B>> handler) -> Monad<B>```
-| MapOrThrow      | Rop, C#          | ```Monad<A> . MapOrThrow<B>(Func<A, B> f, Action<A,Exception> handler) -> Monad<B>```
-| MapTo           | New              | ```Monad<A> . MapTo<B>(Func<A, B> func) -> B```
-| Tee             | Rop              | ```Monad<A> . Tee(Action<A> action) -> Monad<A>```
-| TeeOrCatch      | Rop, C#          | ```Monad<A> . TeeOrCatch(Action<A> f, Action<A, Exception> handler) -> Monadn<A>```
-| TeeOrThrow      | Rop, C#          | ???
-| ValueOrDefault  | Java/OrElse      | ```Monad<A> . ValueOrDefault(A @default) -> A```
-| ValueOrThrow    | Java/OrElseThrow | ```Monad<A> . ValueOrThrow<E>(string exception) -> A```
+| Name            | Sources              | Siganture   |
+| ---             | ---                  | ---         |
+| Call            | Haskell/Then         | ```Monad<A> . Call<B>(B b) -> B```
+| Ignore          | All                  | ```Monad<A> . Ignore() -> void```
+| Map             | All                  | ```Monad<A> . Map<B>(Func<A, B> func) -> Monad<B>```
+| MapOrCatch      | Rop, C#              | ```Monad<A> . MapOrCatch<B>(Func<A, B> f, Func<A, Exception, Monad<B>> handler) -> Monad<B>```
+| MapOrThrow      | Rop, C#              | ```Monad<A> . MapOrThrow<B>(Func<A, B> f, Action<A,Exception> handler) -> Monad<B>```
+| MapTo           | Haskell/Join,FlatMap | ```Monad<A> . MapTo<B>(Func<A, Monad<B>> func) -> Monad<B>```
+| Tee             | Rop                  | ```Monad<A> . Tee(Action<A> action) -> Monad<A>```
+| TeeOrCatch      | Rop, C#              | ```Monad<A> . TeeOrCatch(Action<A> f, Action<A, Exception> handler) -> Monadn<A>```
+| TeeOrThrow      | Rop, C#              | ???
+| ValueOrDefault  | Java/OrElse          | ```Monad<A> . ValueOrDefault(A @default) -> A```
+| ValueOrThrow    | Java/OrElseThrow     | ```Monad<A> . ValueOrThrow<E>(string exception) -> A```
 
 ### Multi-Type Monad Functions
 

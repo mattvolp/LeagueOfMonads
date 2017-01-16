@@ -55,12 +55,7 @@ namespace LeagueOfMonads
             throw;
          }
       }
-
-      public virtual TResult MapTo<TResult>(Func<T, TResult> f)
-      {
-         return f(Value);
-      }
-
+      
       public virtual Data<T> Tee(Action<T> f)
       {
          f(Value);

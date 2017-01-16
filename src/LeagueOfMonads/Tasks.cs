@@ -14,12 +14,7 @@ namespace LeagueOfMonads
       {
          // noop
       }
-
-      public static async Task<TResult> Map<T, TResult>(this Task<T> t, Func<T, Task<TResult>> f)
-      {
-         return await f(await t);
-      }
-
+      
       public static async Task<TResult> Map<T, TResult>(this Task<T> t, Func<T, TResult> f)
       {
          return f(await t);
@@ -123,6 +118,11 @@ namespace LeagueOfMonads
             await h(await t, e);
             throw;
          }
+      }
+
+      public static async Task<TResult> MapTo<T, TResult>(this Task<T> t, Func<T, Task<TResult>> f)
+      {
+         return await f(await t);
       }
 
       public static async Task<T> Tee<T>(this Task<T> t, Func<T, Task> f)

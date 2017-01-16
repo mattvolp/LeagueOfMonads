@@ -68,6 +68,11 @@ namespace LeagueOfMonads
          }
       }
 
+      public virtual Result<TResult> MapTo<TResult>(Func<T, Result<TResult>> f)
+      {
+         return f(Value);
+      }
+
       public virtual Result<T> Tee(Action<T> a)
       {
          a(Value);

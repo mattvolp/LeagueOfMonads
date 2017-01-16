@@ -67,8 +67,8 @@ namespace LeagueOfMonads
             throw;
          }
       }
-
-      public virtual TResult MapTo<TResult>(Func<Option<T>, TResult> f)
+      
+      public virtual Option<TResult> MapTo<TResult>(Func<T, Option<TResult>> f)
       {
          return f(Value);
       }

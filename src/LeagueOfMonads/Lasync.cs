@@ -21,6 +21,7 @@ namespace LeagueOfMonads
       {
          _value = new Lazy<Task<T>>(_factory, true);
       }
+
       public TaskAwaiter<T> GetAwaiter()
       {
          return _value.Value.GetAwaiter();
