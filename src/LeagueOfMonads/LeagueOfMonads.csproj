@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
+    <Compile Include="DataEx.cs" />
     <Compile Include="Experimental\Bundle.cs" />
     <Compile Include="Functions\Disposables.cs" />
     <Compile Include="Functions\Objects.cs" />
@@ -61,10 +62,14 @@
     <Compile Include="NoLambda\DataExtensions.cs" />
     <Compile Include="Linq\SelectEx.cs" />
     <Compile Include="Linq\WhereEx.cs" />
+    <Compile Include="OptionEx.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="Tasks.cs" />
+    <Compile Include="Execution.cs" />
+    <Compile Include="ResultEx.cs" />
+    <Compile Include="ExecutionEx.cs" />
+    <Compile Include="TaskEx.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

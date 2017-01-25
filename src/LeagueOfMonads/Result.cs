@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace LeagueOfMonads
 {
    [DataContract]
-   public class Result<T>
+   public class Result<T, TFailure>
    {
       [DataMember] public readonly bool Successful;
       [DataMember] public readonly T Value;
-      [DataMember] public readonly Exception Failure;
+      [DataMember] public readonly TFailure Failure;
 
       public Result(T value)
       {
@@ -16,99 +17,66 @@ namespace LeagueOfMonads
          Successful = true;
       }
 
-      public Result(Exception failure)
+      public Result(TFailure failure)
       {
          Failure = failure;
          Successful = false;
       }
 
-      public virtual TResult Call<TResult>(TResult x)
+      public virtual TResult Call<TResult>(TResult r)
       {
-         return x;
+         return r;
       }
-
+      
       public virtual void Ignore()
       {
          // noop
       }
 
-      public virtual Result<TResult> Map<TResult>(Func<T, TResult> f)
+      public virtual Result<TResult, TFailure> Map<TResult>(Func<T, TResult> f)
       {
          return Successful
             ? f(Value)
-            : Result.Fail<TResult>(Failure);
-      }
-      
-      public virtual Result<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, Result<TResult>> h)
-      {
-         try
-         {
-            return Successful
-               ? f(Value)
-               : Result.Fail<TResult>(Failure);
-         }
-         catch (Exception e)
-         {
-            return h(Value, e);
-         }
+            : Result.Failure<TResult, TFailure>(Failure);
       }
 
-      public virtual Result<TResult> MapOrThrow<TResult>(Func<T, TResult> f, Action<T, Exception> h)
+      public virtual async Task<Result<TResult, TFailure>> Map<TResult>(Func<T, Task<TResult>> f)
       {
-         try
-         {
-            return Successful
-               ? f(Value)
-               : Result.Fail<TResult>(Failure);
-         }
-         catch (Exception e)
-         {
-            h(Value, e);
-            throw;
-         }
+         return Successful
+            ? await f(Value)
+            : Result.Failure<TResult, TFailure>(Failure);
       }
 
-      public virtual Result<TResult> MapTo<TResult>(Func<T, Result<TResult>> f)
+      public virtual Result<TResult, TFailure> MapTo<TResult>(Func<T, Result<TResult, TFailure>> f)
       {
-         return f(Value);
+         return Successful
+            ? f(Value)
+            : Result.Failure<TResult, TFailure>(Failure);         
       }
 
-      public virtual Result<T> Tee(Action<T> a)
+      public virtual async Task<Result<TResult, TFailure>> MapTo<TResult>(Func<T, Task<Result<TResult, TFailure>>> f)
       {
-         a(Value);
-         return this;
+         return Successful
+            ? await f(Value)
+            : Result.Failure<TResult, TFailure>(Failure);         
       }
 
-      public virtual Result<T> TeeOrCatch(Action<T> f, Action<T, Exception> h)
+      public virtual Result<T, TFailure> Tee(Action<T> f)
       {
-         try
-         {
-            if (Successful)
-               f(Value);
-         }
-         catch (Exception e)
-         {
-            h(Value, e);
-         }
+         if (Successful)
+            f(Value);
 
          return this;
       }
 
-      public virtual Result<T> TeeOrThrow(Action<T> f, Action<T, Exception> h)
+      public virtual async Task<Result<T, TFailure>> Tee(Func<T, Task> f)
       {
-         try
-         {
-            if (Successful)
-               f(Value);
-            return this;
-         }
-         catch (Exception e)
-         {
-            h(Value, e);
-            throw;
-         }
+         if (Successful)
+            await f(Value);
+
+         return this;
       }
-      
+
       public virtual T ValueOrDefault(T @default = default(T))
       {
          return Successful
@@ -116,79 +84,52 @@ namespace LeagueOfMonads
             : @default;
       }
 
-      public virtual T ValueOrThrow()
-      {
-         if (Successful)
-            return Value;
-
-         throw Failure;
-      }
-
-      // multitype functions
-
-      public virtual Result<TResult> MapAll<TResult>(Func<T, TResult> f, Func<Exception, TResult> e)
+      public virtual T ValueOrDefault(Func<T> f)
       {
          return Successful
-            ? f(Value)
-            : e(Failure);
+            ? Value
+            : f();
       }
 
-      // custom functions
-
-      public virtual Result<TResult> TryMap<TResult>(Func<T, TResult> f)
+      public virtual async Task<T> ValueOrDefault(Func<Task<T>> f)
       {
-         try
-         {
-            return Successful
-               ? f(Value)
-               : Result.Fail<TResult>(Failure);
-         }
-         catch (Exception e)
-         {
-            return e;
-         }
+         return Successful
+            ? Value
+            : await f();
       }
 
-      public virtual Result<T> TryTee(Action<T> f)
+      public virtual T ValueOrThrow(Action<TFailure> f)
       {
-         try
+         if (!Successful)
          {
-            if (Successful)
-               f(Value);
-            return this;
+            f(Failure);
+            throw new InvalidOperationException("failure action must throw here.");
          }
-         catch (Exception e)
-         {
-            return e;
-         }
+         
+         return Value;
       }
       
-      public static implicit operator Result<T>(T value)
+      public static implicit operator Result<T, TFailure>(T value)
       {
-         return new Result<T>(value);
+         return new Result<T, TFailure>(value);
       }
 
-      public static implicit operator Result<T>(Exception failure)
+      public static implicit operator Result<T, TFailure>(TFailure failure)
       {
-         return new Result<T>(failure);
+         return new Result<T, TFailure>(failure);
       }
    }
    
    public static class Result
    {
-      public static Result<T> Succeed<T>(T value) 
+      public static Result<T, TFailure> Success<T, TFailure>(T value) 
       {
-         return new Result<T>(value);
+         return new Result<T, TFailure>(value);
       }
 
-      public static Result<T> Fail<T>(Exception e)
+      public static Result<T, TFailure> Failure<T, TFailure>(TFailure e)
       {
-         return new Result<T>(e);
-      }
-
-      public static Result<T> Fail<T>(string message)
-      {         
-         return new Result<T>(new Exception(message));
-      }
+         return new Result<T, TFailure>(e);
+      }      
    }   
 }

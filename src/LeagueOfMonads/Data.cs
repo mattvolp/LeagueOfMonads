@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace LeagueOfMonads
 {      
@@ -20,7 +21,7 @@ namespace LeagueOfMonads
       {
          return r;
       }
-
+      
       public virtual void Ignore()
       {
          // noop
@@ -28,79 +29,26 @@ namespace LeagueOfMonads
 
       public virtual Data<TResult> Map<TResult>(Func<T, TResult> f)
       {
-         return new Data<TResult>(f(Value));
+         return f(Value);
       }
 
-      public virtual Data<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, Data<TResult>> handler)
+      public virtual async Task<Data<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
-         try
-         {
-            return f(Value);
-         }
-         catch (Exception e)
-         {
-            return handler(Value, e);
-         }
+         return await f(Value);
       }
 
-      public virtual Data<TResult> MapOrThrow<TResult>(Func<T, TResult> f, Action<T, Exception> handler)
-      {
-         try
-         {
-            return f(Value);
-         }
-         catch (Exception e)
-         {
-            handler(Value, e);
-            throw;
-         }
-      }
-      
       public virtual Data<T> Tee(Action<T> f)
       {
          f(Value);
          return this;
       }
 
-      public virtual Data<T> TeeOrCatch(Action<T> f, Action<T, Exception> handler)
+      public virtual async Task<Data<T>> Tee(Func<T, Task> f)
       {
-         try
-         {
-            f(Value);
-         }
-         catch (Exception e)
-         {
-            handler(Value, e);
-         }
-
+         await f(Value);
          return this;
       }
-
-      public virtual Data<T> TeeOrThrow(Action<T> f, Action<T, Exception> handler)
-      {
-         try
-         {
-            f(Value);
-         }
-         catch (Exception e)
-         {
-            handler(Value, e);
-            throw;
-         }
-
-         return this;
-      }
-
-      public virtual T ValueOrDefault(T @default)
-      {
-         return Value;
-      }
-
-      public virtual T ValueOrThrow(string error)
-      {
-         return Value;
-      }
-
+      
       public virtual IEnumerator<T> GetEnumerator()
       {
          yield return Value;

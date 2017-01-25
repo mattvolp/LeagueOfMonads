@@ -23,17 +23,28 @@ To provide a collection of monads that work together seemlessly and have a commo
 | Name            | Sources              | Siganture   |
 | ---             | ---                  | ---         |
 | Call            | Haskell/Then         | ```Monad<A> . Call<B>(B b) -> B```
+| Call            | Haskell/Then         | ```Monad<A> . Call<B>(Task<B> b) -> Task<B>```
 | Ignore          | All                  | ```Monad<A> . Ignore() -> void```
 | Map             | All                  | ```Monad<A> . Map<B>(Func<A, B> func) -> Monad<B>```
-| MapOrCatch      | Rop, C#              | ```Monad<A> . MapOrCatch<B>(Func<A, B> f, Func<A, Exception, Monad<B>> handler) -> Monad<B>```
-| MapOrThrow      | Rop, C#              | ```Monad<A> . MapOrThrow<B>(Func<A, B> f, Action<A,Exception> handler) -> Monad<B>```
+| Map             | All                  | ```Monad<A> . Map<B>(Func<A, Task<B>> func) -> Task<Monad<B>>```
 | MapTo           | Haskell/Join,FlatMap | ```Monad<A> . MapTo<B>(Func<A, Monad<B>> func) -> Monad<B>```
+| MapTo           | Haskell/Join,FlatMap | ```Monad<A> . MapTo<B>(Func<A, Task<Monad<B>>> func) -> Task<Monad<B>>```
 | Tee             | Rop                  | ```Monad<A> . Tee(Action<A> action) -> Monad<A>```
-| TeeOrCatch      | Rop, C#              | ```Monad<A> . TeeOrCatch(Action<A> f, Action<A, Exception> handler) -> Monadn<A>```
-| TeeOrThrow      | Rop, C#              | ???
+| Tee             | Rop                  | ```Monad<A> . Tee(Func<A, Task> action) -> Task<Monad<A>>```
 | ValueOrDefault  | Java/OrElse          | ```Monad<A> . ValueOrDefault(A @default) -> A```
+| ValueOrDefault  | Java/OrElse          | ```Monad<A> . ValueOrDefault(Func<A> func) -> A```
+| ValueOrDefault  | Java/OrElse          | ```Monad<A> . ValueOrDefault(Func<Task<A>> func) -> Task<A>```
 | ValueOrThrow    | Java/OrElseThrow     | ```Monad<A> . ValueOrThrow<E>(string exception) -> A```
+| ValueOrThrow    | Java/OrElseThrow     | ```Monad<A> . ValueOrThrow<E>(Func<Exception> f) -> A```
 
+<!-- 
+| MapOrCatch      | Rop, C#              | ```Monad<A> . MapOrCatch<B>(Func<A, B> f, Func<A, Exception, Monad<B>> handler) -> Monad<B>``` 
+| MapOrThrow      | Rop, C#              | ```Monad<A> . MapOrThrow<B>(Func<A, B> f, Action<A,Exception> handler) -> Monad<B>```) 
+| TeeOrCatch      | Rop, C#              | ```Monad<A> . TeeOrCatch(Action<A> f, Action<A, Exception> handler) -> Monadn<A>``` 
+| TeeOrThrow      | Rop, C#              | ??? 
+-->
+
+<!--
 ### Multi-Type Monad Functions
 
 | Name            | Sources          | Siganture   |
@@ -53,6 +64,7 @@ To provide a collection of monads that work together seemlessly and have a commo
 | ---             | ---              | ---         |
 | TryMap?         | Rop              | ```Monad<A> . Try<B>(Func<A, B> func) -> Result<B>```
 | TryTee?         | Rop, C#          | ???
+-->
 
 ### Extension-Implemented Type Helpers
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace LeagueOfMonads
 {
@@ -19,7 +20,7 @@ namespace LeagueOfMonads
 
       public Option(T value)
       {
-         HasValue = Equals(null, value);
+         HasValue = !Equals(null, value);
          Value = value;
       }
 
@@ -27,7 +28,7 @@ namespace LeagueOfMonads
       {
          return r;
       }
-
+      
       public virtual void Ignore()
       {
          // noop
@@ -36,41 +37,29 @@ namespace LeagueOfMonads
       public virtual Option<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return HasValue
-            ? Option.Some(f(Value))
+            ? f(Value)
             : Option.None<TResult>();
       }
 
-      public virtual Option<TResult> MapOrCatch<TResult>(Func<T, TResult> f, Func<T, Exception, Option<TResult>> handler)
+      public virtual async Task<Option<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
-         try
-         {
-            return HasValue
-               ? f(Value)
-               : Option.None<TResult>();
-
-         }
-         catch (Exception e)
-         {
-            return handler(Value, e);
-         }
-      }
-
-      public virtual Option<TResult> MapOrThrow<TResult>(Func<T, TResult> f, Action<T, Exception> handler)
-      {
-         try
-         {
-            return f(Value);
-         }
-         catch (Exception e)
-         {
-            handler(Value, e);
-            throw;
-         }
+         return HasValue
+            ? await f(Value)
+            : Option.None<TResult>();
       }
       
       public virtual Option<TResult> MapTo<TResult>(Func<T, Option<TResult>> f)
       {
-         return f(Value);
+         return HasValue
+            ? f(Value)
+            : Option.None<TResult>();
+      }
+
+      public virtual async Task<Option<TResult>> MapTo<TResult>(Func<T, Task<Option<TResult>>> f)
+      {
+         return HasValue
+            ? await f(Value)
+            : Option.None<TResult>();
       }
 
       public virtual Option<T> Tee(Action<T> f)
@@ -81,42 +70,33 @@ namespace LeagueOfMonads
          return this;
       }
 
-      public virtual Option<T> TeeOrCatch(Action<T> f, Action<T, Exception> handler)
+      public virtual async Task<Option<T>> Tee(Func<T, Task> f)
       {
-         try
-         {
-            if (HasValue)
-               f(Value);            
-         }
-         catch (Exception e)
-         {
-            handler(Value, e);
-         }
+         if (HasValue)
+            await f(Value);
 
          return this;
       }
 
-      public virtual Option<T> TeeOrThrow(Action<T> f, Action<T, Exception> handler)
-      {
-         try
-         {
-            if (HasValue)
-               f(Value);
-
-            return this;
-         }
-         catch (Exception e)
-         {
-            handler(Value, e);
-            throw;
-         }
-      }
-      
       public virtual T ValueOrDefault(T @default = default(T))
       {
          return HasValue
             ? Value
             : @default;
+      }
+
+      public virtual T ValueOrDefault(Func<T> f)
+      {
+         return HasValue
+            ? Value
+            : f();
+      }
+
+      public virtual async Task<T> ValueOrDefault(Func<Task<T>> f)
+      {
+         return HasValue
+            ? Value
+            : await f();
       }
 
       public virtual T ValueOrThrow(string error)
@@ -125,6 +105,15 @@ namespace LeagueOfMonads
             return Value;
 
          throw new Exception(error);
+      }
+
+      public virtual T ValueOrThrow<TException>(Func<TException> f)
+         where TException : Exception
+      {
+         if (HasValue)
+            return Value;
+
+         throw f();
       }
 
       public virtual IEnumerator<T> GetEnumerator()
@@ -159,12 +148,6 @@ namespace LeagueOfMonads
       public static Option<T> From<T>(T value)
       {
          return new Option<T>(value);
-      }
-      
-      public static T? ToNullable<T>(this Option<T> o)
-         where T : struct
-      {
-         return o.Value;
-      }      
+      }            
    }   
 }
