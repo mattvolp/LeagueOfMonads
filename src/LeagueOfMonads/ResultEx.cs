@@ -5,100 +5,64 @@ namespace LeagueOfMonads
 {
    public static class ResultEx
    {
-      public static TResult Call<T, TResult, TFailure>(this Task<Result<T, TFailure>> t, TResult r)
+      public static async Task<TResult> Call<T, TResult, TFailure>(this Task<Result<T, TFailure>> t, TResult r)
       {
-         return r;
+         return (await t).Call(r);         
       }
 
-      public static Task Ignore<T, TFailure>(this Task<Result<T, TFailure>> t)
+      public static async Task Ignore<T, TFailure>(this Task<Result<T, TFailure>> t)
       {
-         return t;
+         (await t).Ignore();         
       }
 
       public static async Task<Result<TResult, TFailure>> Map<T, TResult, TFailure>(this Task<Result<T, TFailure>> t, Func<T, TResult> f)
       {
-         var o = await t;
-         return o.Successful
-            ? f(o.Value)
-            : Result.Failure<TResult, TFailure>(o.Failure);
+         return (await t).Map(f);         
       }
 
       public static async Task<Result<TResult, TFailure>> Map<T, TResult, TFailure>(this Task<Result<T, TFailure>> t, Func<T, Task<TResult>> f)
       {
-         var o = await t;
-         return o.Successful
-            ? await f(o.Value)
-            : Result.Failure<TResult, TFailure>(o.Failure);
+         return await (await t).Map(f);         
       }
 
       public static async Task<Result<TResult, TFailure>> MapTo<T, TResult, TFailure>(this Task<Result<T, TFailure>> t, Func<T, Result<TResult, TFailure>> f)
       {
-         var o = await t;
-         return o.Successful
-            ? f(o.Value)
-            : Result.Failure<TResult, TFailure>(o.Failure);         
+         return (await t).MapTo(f);         
       }
 
       public static async Task<Result<TResult, TFailure>> MapTo<T, TResult, TFailure>(this Task<Result<T, TFailure>> t, Func<T, Task<Result<TResult, TFailure>>> f)
       {
-         var o = await t;
-         return o.Successful
-            ? await f(o.Value)
-            : Result.Failure<TResult, TFailure>(o.Failure);
+         return await (await t).MapTo(f);         
       }
 
       public static async Task<Result<T, TFailure>> Tee<T, TFailure>(this Task<Result<T, TFailure>> t, Action<T> f)
       {
-         var o = await t;
-         if (o.Successful)
-            f(o.Value);
-
-         return o;
+         return (await t).Tee(f);         
       }
 
       public static async Task<Result<T, TFailure>> Tee<T, TFailure>(this Task<Result<T, TFailure>> t, Func<T, Task> f)
       {
-         var o = await t;
-         if (o.Successful)
-            await f(o.Value);
-
-         return o;
+         return await (await t).Tee(f);         
       }
 
       public static async Task<T> ValueOrDefault<T, TFailure>(this Task<Result<T, TFailure>> t, T @default = default(T))
       {
-         var o = await t;
-         return o.Successful
-            ? o.Value
-            : @default;
+         return (await t).ValueOrDefault(@default);         
       }
 
       public static async Task<T> ValueOrDefault<T, TFailure>(this Task<Result<T, TFailure>> t, Func<T> f)
       {
-         var o = await t;
-         return o.Successful
-            ? o.Value
-            : f();
+         return (await t).ValueOrDefault(f);         
       }
 
       public static async Task<T> ValueOrDefault<T, TFailure>(this Task<Result<T, TFailure>> t, Func<Task<T>> f)
       {
-         var o = await t;
-         return o.Successful
-            ? o.Value
-            : await f();
+         return await (await t).ValueOrDefault(f);         
       }
 
       public static async Task<T> ValueOrThrow<T, TFailure>(this Task<Result<T, TFailure>> t, Action<TFailure> f)
       {
-         var o = await t;
-         if (!o.Successful)
-         {
-            f(o.Failure);
-            throw new InvalidOperationException("failure action must throw here.");
-         }
-
-         return o.Value;
+         return (await t).ValueOrThrow(f);         
       }      
    }
 }

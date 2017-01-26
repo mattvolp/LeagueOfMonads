@@ -59,6 +59,10 @@
     <Compile Include="Linq\ExceptEx.cs" />
     <Compile Include="Linq\IterateEx.cs" />
     <Compile Include="Linq\PivotEx.cs" />
+    <Compile Include="NoLambda\ResultExtensions.cs" />
+    <Compile Include="NoLambda\TaskExtensions.cs" />
+    <Compile Include="NoLambda\ReturnExtensions.cs" />
+    <Compile Include="NoLambda\OptionExtensions.cs" />
     <Compile Include="NoLambda\DataExtensions.cs" />
     <Compile Include="Linq\SelectEx.cs" />
     <Compile Include="Linq\WhereEx.cs" />
@@ -66,9 +70,9 @@
     <Compile Include="Option.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="Execution.cs" />
+    <Compile Include="Return.cs" />
     <Compile Include="ResultEx.cs" />
-    <Compile Include="ExecutionEx.cs" />
+    <Compile Include="ReturnEx.cs" />
     <Compile Include="TaskEx.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

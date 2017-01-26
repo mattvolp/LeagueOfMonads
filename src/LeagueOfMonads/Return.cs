@@ -5,19 +5,19 @@ using System.Threading.Tasks;
 namespace LeagueOfMonads
 {
    [DataContract]
-   public class Execution<T>
+   public class Return<T>
    {
       [DataMember] public readonly bool Successful;
       [DataMember] public readonly T Value;
       [DataMember] public readonly Exception Failure;
 
-      public Execution(T value)
+      public Return(T value)
       {
          Value = value;
          Successful = true;
       }
 
-      public Execution(Exception failure)
+      public Return(Exception failure)
       {
          Failure = failure;
          Successful = false;
@@ -33,35 +33,35 @@ namespace LeagueOfMonads
          // noop
       }
 
-      public virtual Execution<TResult> Map<TResult>(Func<T, TResult> f)
+      public virtual Return<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return Successful
             ? f(Value)
-            : Execution.Failure<TResult>(Failure);
+            : Return.Failure<TResult>(Failure);
       }
 
-      public virtual async Task<Execution<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
+      public virtual async Task<Return<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
          return Successful
             ? await f(Value)
-            : Execution.Failure<TResult>(Failure);
+            : Return.Failure<TResult>(Failure);
       }
 
-      public virtual Execution<TResult> MapTo<TResult>(Func<T, Execution<TResult>> f)
+      public virtual Return<TResult> MapTo<TResult>(Func<T, Return<TResult>> f)
       {
          return Successful
             ? f(Value)
-            : Execution.Failure<TResult>(Failure);         
+            : Return.Failure<TResult>(Failure);         
       }
 
-      public virtual async Task<Execution<TResult>> MapTo<TResult>(Func<T, Task<Execution<TResult>>> f)
+      public virtual async Task<Return<TResult>> MapTo<TResult>(Func<T, Task<Return<TResult>>> f)
       {
          return Successful
             ? await f(Value)
-            : Execution.Failure<TResult>(Failure);         
+            : Return.Failure<TResult>(Failure);         
       }
 
-      public virtual Execution<T> Tee(Action<T> f)
+      public virtual Return<T> Tee(Action<T> f)
       {
          if (Successful)
             f(Value);
@@ -69,7 +69,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      public virtual async Task<Execution<T>> Tee(Func<T, Task> f)
+      public virtual async Task<Return<T>> Tee(Func<T, Task> f)
       {
          if (Successful)
             await f(Value);
@@ -106,32 +106,32 @@ namespace LeagueOfMonads
          throw Failure;
       }
       
-      public static implicit operator Execution<T>(T value)
+      public static implicit operator Return<T>(T value)
       {
-         return new Execution<T>(value);
+         return new Return<T>(value);
       }
 
-      public static implicit operator Execution<T>(Exception failure)
+      public static implicit operator Return<T>(Exception failure)
       {
-         return new Execution<T>(failure);
+         return new Return<T>(failure);
       }
    }
    
-   public static class Execution
+   public static class Return
    {
-      public static Execution<T> Success<T>(T value) 
+      public static Return<T> Success<T>(T value) 
       {
-         return new Execution<T>(value);
+         return new Return<T>(value);
       }
 
-      public static Execution<T> Failure<T>(Exception e)
+      public static Return<T> Failure<T>(Exception e)
       {
-         return new Execution<T>(e);
+         return new Return<T>(e);
       }
 
-      public static Execution<T> Failure<T>(string message)
+      public static Return<T> Failure<T>(string message)
       {         
-         return new Execution<T>(new Exception(message));
+         return new Return<T>(new Exception(message));
       }
    }   
 }

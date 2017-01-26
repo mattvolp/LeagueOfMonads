@@ -11,107 +11,70 @@ namespace LeagueOfMonads
          return o.Value;
       }
 
-      public static TResult Call<T, TResult>(this Task<Option<T>> t, TResult r)
+      public static async Task<TResult> Call<T, TResult>(this Task<Option<T>> t, TResult r)
       {
-         return r;
+         return (await t).Call(r);         
       }
 
-      public static Task Ignore<T>(this Task<Option<T>> t)
+      public static async Task Ignore<T>(this Task<Option<T>> t)
       {
-         return t;
+         (await t).Ignore();         
       }
 
       public static async Task<Option<TResult>> Map<T, TResult>(this Task<Option<T>> t, Func<T, TResult> f)
       {
-         var o = await t;
-         return o.HasValue
-            ? f(o.Value)
-            : Option.None<TResult>();
+         return (await t).Map(f);         
       }
 
       public static async Task<Option<TResult>> Map<T, TResult>(this Task<Option<T>> t, Func<T, Task<TResult>> f)
       {
-         var o = await t;
-         return o.HasValue
-            ? await f(o.Value)
-            : Option.None<TResult>();
+         return await (await t).Map(f);         
       }
 
       public static async Task<Option<TResult>> MapTo<T, TResult>(this Task<Option<T>> t, Func<T, Option<TResult>> f)
       {
-         var o = await t;
-         return o.HasValue
-            ? f(o.Value)
-            : Option.None<TResult>();         
+         return (await t).MapTo(f);         
       }
 
       public static async Task<Option<TResult>> MapTo<T, TResult>(this Task<Option<T>> t, Func<T, Task<Option<TResult>>> f)
       {
-         var o = await t;
-         return o.HasValue
-            ? await f(o.Value)
-            : Option.None<TResult>();         
+         return await (await t).MapTo(f);         
       }
 
       public static async Task<Option<T>> Tee<T>(this Task<Option<T>> t, Action<T> f)
       {
-         var o = await t;
-         if (o.HasValue)
-            f(o.Value);
-
-         return o;
+         return (await t).Tee(f);         
       }
 
       public static async Task<Option<T>> Tee<T>(this Task<Option<T>> t, Func<T, Task> f)
       {
-         var o = await t;
-         if (o.HasValue)
-            await f(o.Value);
-
-         return o;
+         return await (await t).Tee(f);         
       }
 
       public static async Task<T> ValueOrDefault<T>(this Task<Option<T>> t, T @default = default(T))
       {
-         var o = await t;
-         return o.HasValue
-            ? o.Value
-            : @default;
+         return (await t).ValueOrDefault(@default);         
       }
 
       public static async Task<T> ValueOrDefault<T>(this Task<Option<T>> t, Func<T> f)
       {
-         var o = await t;
-         return o.HasValue
-            ? o.Value
-            : f();
+         return (await t).ValueOrDefault(f);         
       }
 
       public static async Task<T> ValueOrDefault<T>(this Task<Option<T>> t, Func<Task<T>> f)
       {
-         var o = await t;
-         return o.HasValue
-            ? o.Value
-            : await f();
+         return await (await t).ValueOrDefault(f);         
       }
 
       public static async Task<T> ValueOrThrow<T>(this Task<Option<T>> t, string error)
       {
-         var o = await t;
-         if (o.HasValue)
-            return o.Value;
-
-         throw new Exception(error);
+         return (await t).ValueOrThrow(error);         
       }
 
       public static async Task<T> ValueOrThrow<T, TException>(this Task<Option<T>> t, Func<TException> f)
          where TException : Exception
       {
-         var o = await t;
-         if (o.HasValue)
-            return o.Value;
-
-         throw f();
+         return (await t).ValueOrThrow(f);         
       }
    }
 }

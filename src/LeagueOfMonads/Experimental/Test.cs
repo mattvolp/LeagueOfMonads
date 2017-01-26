@@ -21,14 +21,14 @@ namespace LeagueOfMonads.Experimental
 
       internal async Task X2()
       {
-         var o = new Data<int>(42);
+         var o = new Option<int>(42);
 
          var x = await o
             .Map(Inc)
             .Map(IncA)
-            .Map(Inc)
-            .Map(IncA)
-            .Value(); //OrThrow(2);
+            .Map(Inc2, "")
+            .Map(IncA2, "")
+            .ValueOrDefault();
 
 
 
@@ -50,7 +50,17 @@ namespace LeagueOfMonads.Experimental
          return v + 1;
       }
 
+      private static int Inc2(int v, string x)
+      {
+         return v + 1;
+      }
+
       private static Task<int> IncA(int v)
+      {
+         return Task.FromResult(v + 1);
+      }
+
+      private static Task<int> IncA2(int v, string s)
       {
          return Task.FromResult(v + 1);
       }
