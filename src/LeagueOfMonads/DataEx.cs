@@ -51,6 +51,12 @@ namespace LeagueOfMonads
          var o = await t;
          await f(o.Value);
          return o;
-      }      
+      }
+
+      public static async Task<T> Value<T>(this Task<Data<T>> t)
+      {
+         var o = await t;
+         return o.Value;            
+      }
    }
 }

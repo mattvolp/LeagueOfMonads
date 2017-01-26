@@ -58,12 +58,7 @@ namespace LeagueOfMonads
       {
          return GetEnumerator();
       }
-
-      public static implicit operator T(Data<T> d)
-      {
-         return d.Value;
-      }
-
+      
       public static implicit operator Data<T>(T value)
       {
          return new Data<T>(value);
