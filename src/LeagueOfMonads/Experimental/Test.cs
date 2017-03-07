@@ -28,11 +28,35 @@ namespace LeagueOfMonads.Experimental
             .Map(IncA)
             .Map(Inc2, "")
             .Map(IncA2, "")
-            .ValueOrDefault();
+            .ValueOrDefault();         
+      }
 
+      internal void X3()
+      {
+         //Data.Create(3)
+         //   .Join("x")
+         //   .Map(Inc2);
 
+         //Join.Create(3, "x")
+         //   .Map(Inc2);
+      }
 
+      internal void X4()
+      {
+         var x = Data.Create(3)
+            .Tee(TeeMe)
+            .Tea(TeeMeA)
+            .Tee(TeeMe);
+      }
 
+      private void TeeMe(int i)
+      {
+         //
+      }
+
+      private Task TeeMeA(int i)
+      {
+         return Task.FromResult(i);
       }
 
       private Option<int> Poop(int arg1, Exception arg2)

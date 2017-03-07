@@ -94,19 +94,19 @@ namespace LeagueOfMonads.NoLambda
 
       // TEE #2
 
-      public static Task<Option<T>> Tee<T, A>(this Option<T> m, Func<T, A, Task> f, A a)
+      public static Task<Option<T>> Tea<T, A>(this Option<T> m, Func<T, A, Task> f, A a)
       {
-         return m.Tee(t => f(t, a));
+         return m.Tea(t => f(t, a));
       }
 
-      public static Task<Option<T>> Tee<T, A, B>(this Option<T> m, Func<T, A, B, Task> f, A a, B b)
+      public static Task<Option<T>> Tea<T, A, B>(this Option<T> m, Func<T, A, B, Task> f, A a, B b)
       {
-         return m.Tee(t => f(t, a, b));
+         return m.Tea(t => f(t, a, b));
       }
 
-      public static Task<Option<T>> Tee<T, A, B, C>(this Option<T> m, Func<T, A, B, C, Task> f, A a, B b, C c)
+      public static Task<Option<T>> Tea<T, A, B, C>(this Option<T> m, Func<T, A, B, C, Task> f, A a, B b, C c)
       {
-         return m.Tee(t => f(t, a, b, c));
+         return m.Tea(t => f(t, a, b, c));
       }
 
       // TEE EX #1
@@ -128,19 +128,19 @@ namespace LeagueOfMonads.NoLambda
 
       // TEE EX #2
 
-      public static async Task<Option<T>> Tee<T, A>(this Task<Option<T>> m, Func<T, A, Task> f, A a)
+      public static async Task<Option<T>> Tea<T, A>(this Task<Option<T>> m, Func<T, A, Task> f, A a)
       {
-         return await (await m).Tee(t => f(t, a));
+         return await (await m).Tea(t => f(t, a));
       }
 
-      public static async Task<Option<T>> Tee<T, A, B>(this Task<Option<T>> m, Func<T, A, B, Task> f, A a, B b)
+      public static async Task<Option<T>> Tea<T, A, B>(this Task<Option<T>> m, Func<T, A, B, Task> f, A a, B b)
       {
-         return await (await m).Tee(t => f(t, a, b));
+         return await (await m).Tea(t => f(t, a, b));
       }
 
-      public static async Task<Option<T>> Tee<T, A, B, C>(this Task<Option<T>> m, Func<T, A, B, C, Task> f, A a, B b, C c)
+      public static async Task<Option<T>> Tea<T, A, B, C>(this Task<Option<T>> m, Func<T, A, B, C, Task> f, A a, B b, C c)
       {
-         return await (await m).Tee(t => f(t, a, b, c));
+         return await (await m).Tea(t => f(t, a, b, c));
       }
    }
 }

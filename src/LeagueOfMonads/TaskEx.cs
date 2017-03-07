@@ -41,7 +41,7 @@ namespace LeagueOfMonads
          return await t;
       }
 
-      public static async Task<T> Tee<T>(this Task<T> t, Func<T, Task> f)
+      public static async Task<T> Tea<T>(this Task<T> t, Func<T, Task> f)
       {
          await f(await t);
          return await t;

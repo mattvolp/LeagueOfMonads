@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Join.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DataEx.cs" />
     <Compile Include="Experimental\Bundle.cs" />

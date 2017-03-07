@@ -30,9 +30,9 @@ namespace LeagueOfMonads
          return (await t).Tee(f);         
       }
 
-      public static async Task<Data<T>> Tee<T>(this Task<Data<T>> t, Func<T, Task> f)
+      public static async Task<Data<T>> Tea<T>(this Task<Data<T>> t, Func<T, Task> f)
       {
-         return await (await t).Tee(f);         
+         return await (await t).Tea(f);         
       }
 
       public static async Task<T> Value<T>(this Task<Data<T>> t)

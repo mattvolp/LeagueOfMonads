@@ -69,7 +69,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      public virtual async Task<Return<T>> Tee(Func<T, Task> f)
+      public virtual async Task<Return<T>> Tea(Func<T, Task> f)
       {
          if (Successful)
             await f(Value);

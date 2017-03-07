@@ -27,6 +27,11 @@ namespace LeagueOfMonads
          // noop
       }
 
+      //public virtual Join<T, T2> Join<T2>(T2 value)
+      //{
+      //   return new Join<T, T2>(Value, value);
+      //}
+
       public virtual Data<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return f(Value);
@@ -43,7 +48,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      public virtual async Task<Data<T>> Tee(Func<T, Task> f)
+      public virtual async Task<Data<T>> Tea(Func<T, Task> f)
       {
          await f(Value);
          return this;

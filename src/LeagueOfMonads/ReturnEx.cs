@@ -40,9 +40,9 @@ namespace LeagueOfMonads
          return (await t).Tee(f);         
       }
 
-      public static async Task<Return<T>> Tee<T>(this Task<Return<T>> t, Func<T, Task> f)
+      public static async Task<Return<T>> Tea<T>(this Task<Return<T>> t, Func<T, Task> f)
       {
-         return await (await t).Tee(f);         
+         return await (await t).Tea(f);         
       }
 
       public static async Task<T> ValueOrDefault<T>(this Task<Return<T>> t, T @default = default(T))
