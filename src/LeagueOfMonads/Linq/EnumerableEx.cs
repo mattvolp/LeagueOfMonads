@@ -6,6 +6,12 @@ namespace LeagueOfMonads.Linq
 {
    public static class EnumerableEx
    {
+      public static void EvaluateAndIgnore<T>(this IEnumerable<T> e)
+      {
+         // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+         e.ToList();
+      }
+
       public static string Join<T>(this IEnumerable<T> t, string delimiter = null)
       {
          return string.Join(delimiter, t);
@@ -21,6 +27,15 @@ namespace LeagueOfMonads.Linq
          return a
             .Select(t => t.Result)
             .ToList();
+      }
+
+      public static IEnumerable<Task> WaitAll(this IEnumerable<Task> tasks)
+      {
+         var a = tasks.ToArray();
+         
+         Task.WaitAll(a);
+
+         return a;
       }
    }
 }

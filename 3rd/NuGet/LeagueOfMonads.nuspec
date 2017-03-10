@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LeagueOfMonads</id>
-		<version>0.8.2</version>
+		<version>0.8.3</version>
 		<authors>Anthony Leatherwood</authors>
 		<owners>aleatherwood</owners>
 		<licenseUrl>https://github.com/adleatherwood/LeagueOfMonads/blob/master/LICENSE</licenseUrl>

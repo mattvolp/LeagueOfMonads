@@ -47,7 +47,7 @@
 	
 	<Target Name="Build" DependsOnTargets="Clean">
         <MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Release;Platform=Any CPU" />
-		<MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Debug;Platform=Any CPU" />
+		<!-- <MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Debug;Platform=Any CPU" /><MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Debug;Platform=Any CPU" /> -->
     </Target>
 	
 	<Target Name="Copy" DependsOnTargets="Build">
@@ -58,7 +58,7 @@
         <ItemGroup>
             <FilesToZip Include="$(ReleaseFolder)\*.*" />
         </ItemGroup>
-        <Zip Files="@(filestozip)" WorkingDirectory="$(ReleaseFolder)" ZipFileName="$(ReleaseFolder)\LeagueOfMonads.0.8.2.zip" />
+        <Zip Files="@(filestozip)" WorkingDirectory="$(ReleaseFolder)" ZipFileName="$(ReleaseFolder)\LeagueOfMonads.0.8.3.zip" />
     </Target>
 	
 	<Target Name="CompleteBuild" DependsOnTargets="Zip" />
