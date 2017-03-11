@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -24,16 +25,19 @@ namespace LeagueOfMonads
          Value = value;
       }
 
+      [DebuggerHidden]
       public virtual TResult Call<TResult>(TResult r)
       {
          return r;
       }
-      
+
+      [DebuggerHidden]
       public virtual void Ignore()
       {
          // noop
       }
 
+      [DebuggerHidden]
       public virtual Option<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return HasValue
@@ -41,13 +45,15 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
+      [DebuggerHidden]
       public virtual async Task<Option<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
          return HasValue
             ? await f(Value)
             : Option.None<TResult>();
       }
-      
+
+      [DebuggerHidden]
       public virtual Option<TResult> MapTo<TResult>(Func<T, Option<TResult>> f)
       {
          return HasValue
@@ -55,6 +61,7 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
+      [DebuggerHidden]
       public virtual async Task<Option<TResult>> MapTo<TResult>(Func<T, Task<Option<TResult>>> f)
       {
          return HasValue
@@ -62,6 +69,7 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
+      [DebuggerHidden]
       public virtual Option<T> Tee(Action<T> f)
       {
          if (HasValue)
@@ -70,6 +78,7 @@ namespace LeagueOfMonads
          return this;
       }
 
+      [DebuggerHidden]
       public virtual async Task<Option<T>> Tea(Func<T, Task> f)
       {
          if (HasValue)
@@ -78,6 +87,7 @@ namespace LeagueOfMonads
          return this;
       }
 
+      [DebuggerHidden]
       public virtual T ValueOrDefault(T @default = default(T))
       {
          return HasValue
@@ -85,6 +95,7 @@ namespace LeagueOfMonads
             : @default;
       }
 
+      [DebuggerHidden]
       public virtual T ValueOrDefault(Func<T> f)
       {
          return HasValue
@@ -92,13 +103,14 @@ namespace LeagueOfMonads
             : f();
       }
 
+      [DebuggerHidden]
       public virtual async Task<T> ValueOrDefault(Func<Task<T>> f)
       {
          return HasValue
             ? Value
             : await f();
       }
-
+      
       public virtual T ValueOrThrow(string error)
       {
          if (HasValue)

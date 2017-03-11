@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -17,11 +18,13 @@ namespace LeagueOfMonads
          Value = value;
       }
 
+      [DebuggerHidden]
       public virtual TResult Call<TResult>(TResult r)
       {
          return r;
       }
-      
+
+      [DebuggerHidden]
       public virtual void Ignore()
       {
          // noop
@@ -32,22 +35,26 @@ namespace LeagueOfMonads
       //   return new Join<T, T2>(Value, value);
       //}
 
+      [DebuggerHidden]
       public virtual Data<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return f(Value);
       }
 
+      [DebuggerHidden]
       public virtual async Task<Data<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
          return await f(Value);
       }
 
+      [DebuggerHidden]
       public virtual Data<T> Tee(Action<T> f)
       {
          f(Value);
          return this;
       }
 
+      [DebuggerHidden]
       public virtual async Task<Data<T>> Tea(Func<T, Task> f)
       {
          await f(Value);
