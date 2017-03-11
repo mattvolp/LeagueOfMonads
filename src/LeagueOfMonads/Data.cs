@@ -18,13 +18,13 @@ namespace LeagueOfMonads
          Value = value;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual TResult Call<TResult>(TResult r)
       {
          return r;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual void Ignore()
       {
          // noop
@@ -35,26 +35,26 @@ namespace LeagueOfMonads
       //   return new Join<T, T2>(Value, value);
       //}
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Data<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return f(Value);
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Data<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
          return await f(Value);
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Data<T> Tee(Action<T> f)
       {
          f(Value);
          return this;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Data<T>> Tea(Func<T, Task> f)
       {
          await f(Value);

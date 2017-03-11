@@ -25,19 +25,19 @@ namespace LeagueOfMonads
          Value = value;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual TResult Call<TResult>(TResult r)
       {
          return r;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual void Ignore()
       {
          // noop
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Option<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return HasValue
@@ -45,7 +45,7 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Option<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
          return HasValue
@@ -53,7 +53,7 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Option<TResult> MapTo<TResult>(Func<T, Option<TResult>> f)
       {
          return HasValue
@@ -61,7 +61,7 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Option<TResult>> MapTo<TResult>(Func<T, Task<Option<TResult>>> f)
       {
          return HasValue
@@ -69,7 +69,7 @@ namespace LeagueOfMonads
             : Option.None<TResult>();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Option<T> Tee(Action<T> f)
       {
          if (HasValue)
@@ -78,7 +78,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Option<T>> Tea(Func<T, Task> f)
       {
          if (HasValue)
@@ -87,7 +87,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual T ValueOrDefault(T @default = default(T))
       {
          return HasValue
@@ -95,7 +95,7 @@ namespace LeagueOfMonads
             : @default;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual T ValueOrDefault(Func<T> f)
       {
          return HasValue
@@ -103,7 +103,7 @@ namespace LeagueOfMonads
             : f();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<T> ValueOrDefault(Func<Task<T>> f)
       {
          return HasValue

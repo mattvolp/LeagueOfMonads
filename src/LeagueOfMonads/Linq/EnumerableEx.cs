@@ -7,20 +7,20 @@ namespace LeagueOfMonads.Linq
 {
    public static class EnumerableEx
    {
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public static void EvaluateAndIgnore<T>(this IEnumerable<T> e)
       {
          // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
          e.ToList();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public static string Join<T>(this IEnumerable<T> t, string delimiter = null)
       {
          return string.Join(delimiter, t);
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public static IEnumerable<T> WaitAll<T>(this IEnumerable<Task<T>> tasks)
       {
          var a = tasks.ToArray();
@@ -33,7 +33,7 @@ namespace LeagueOfMonads.Linq
             .ToList();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public static IEnumerable<Task> WaitAll(this IEnumerable<Task> tasks)
       {
          var a = tasks.ToArray();

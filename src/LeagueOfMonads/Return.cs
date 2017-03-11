@@ -24,19 +24,19 @@ namespace LeagueOfMonads
          Successful = false;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual TResult Call<TResult>(TResult r)
       {
          return r;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual void Ignore()
       {
          // noop
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Return<TResult> Map<TResult>(Func<T, TResult> f)
       {
          return Successful
@@ -44,7 +44,7 @@ namespace LeagueOfMonads
             : Return.Failure<TResult>(Failure);
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Return<TResult>> Map<TResult>(Func<T, Task<TResult>> f)
       {
          return Successful
@@ -52,7 +52,7 @@ namespace LeagueOfMonads
             : Return.Failure<TResult>(Failure);
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Return<TResult> MapTo<TResult>(Func<T, Return<TResult>> f)
       {
          return Successful
@@ -60,7 +60,7 @@ namespace LeagueOfMonads
             : Return.Failure<TResult>(Failure);         
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Return<TResult>> MapTo<TResult>(Func<T, Task<Return<TResult>>> f)
       {
          return Successful
@@ -68,7 +68,7 @@ namespace LeagueOfMonads
             : Return.Failure<TResult>(Failure);         
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual Return<T> Tee(Action<T> f)
       {
          if (Successful)
@@ -77,7 +77,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<Return<T>> Tea(Func<T, Task> f)
       {
          if (Successful)
@@ -86,7 +86,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual T ValueOrDefault(T @default = default(T))
       {
          return Successful
@@ -94,7 +94,7 @@ namespace LeagueOfMonads
             : @default;
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual T ValueOrDefault(Func<T> f)
       {
          return Successful
@@ -102,7 +102,7 @@ namespace LeagueOfMonads
             : f();
       }
 
-      [DebuggerHidden]
+      [DebuggerNonUserCode]
       public virtual async Task<T> ValueOrDefault(Func<Task<T>> f)
       {
          return Successful
