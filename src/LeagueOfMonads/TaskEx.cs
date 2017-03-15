@@ -11,9 +11,9 @@ namespace LeagueOfMonads
       }
 
 
-      public static void Ignore<T>(this Task<T> t)
+      public static async Task Ignore<T>(this Task<T> t)
       {
-         // noop
+         await t;
       }
 
 
