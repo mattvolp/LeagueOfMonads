@@ -146,6 +146,11 @@ namespace LeagueOfMonads
 
    public static class Option
    {
+      public static Option<T> Create<T>(T value)
+      {
+         return new Option<T>(value);
+      }
+
       public static Option<T> Some<T>(T value)
       {
          return new Option<T>(value);
@@ -154,11 +159,6 @@ namespace LeagueOfMonads
       public static Option<T> None<T>()
       {
          return new Option<T>();
-      }
-
-      public static Option<T> From<T>(T value)
-      {
-         return new Option<T>(value);
-      }
+      }      
    }
 }
