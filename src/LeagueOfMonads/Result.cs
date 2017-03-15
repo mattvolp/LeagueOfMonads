@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -24,19 +23,19 @@ namespace LeagueOfMonads
          Successful = false;
       }
 
-      [DebuggerNonUserCode]
+
       public virtual TResult Call<TResult>(TResult r)
       {
          return r;
       }
 
-      [DebuggerNonUserCode]
+
       public virtual void Ignore()
       {
          // noop
       }
 
-      [DebuggerNonUserCode]
+
       public virtual Result<TResult, TFailure> Map<TResult>(Func<T, TResult> f)
       {
          return Successful
@@ -44,7 +43,7 @@ namespace LeagueOfMonads
             : Result.Failure<TResult, TFailure>(Failure);
       }
 
-      [DebuggerNonUserCode]
+
       public virtual async Task<Result<TResult, TFailure>> Map<TResult>(Func<T, Task<TResult>> f)
       {
          return Successful
@@ -52,23 +51,23 @@ namespace LeagueOfMonads
             : Result.Failure<TResult, TFailure>(Failure);
       }
 
-      [DebuggerNonUserCode]
-      public virtual Result<TResult, TFailure> MapTo<TResult>(Func<T, Result<TResult, TFailure>> f)
+
+      public virtual Result<TResult, TFailure> Map<TResult>(Func<T, Result<TResult, TFailure>> f)
       {
          return Successful
             ? f(Value)
-            : Result.Failure<TResult, TFailure>(Failure);         
+            : Result.Failure<TResult, TFailure>(Failure);
       }
 
-      [DebuggerNonUserCode]
-      public virtual async Task<Result<TResult, TFailure>> MapTo<TResult>(Func<T, Task<Result<TResult, TFailure>>> f)
+
+      public virtual async Task<Result<TResult, TFailure>> Map<TResult>(Func<T, Task<Result<TResult, TFailure>>> f)
       {
          return Successful
             ? await f(Value)
-            : Result.Failure<TResult, TFailure>(Failure);         
+            : Result.Failure<TResult, TFailure>(Failure);
       }
 
-      [DebuggerNonUserCode]
+
       public virtual Result<T, TFailure> Tee(Action<T> f)
       {
          if (Successful)
@@ -77,7 +76,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      [DebuggerNonUserCode]
+
       public virtual async Task<Result<T, TFailure>> Tea(Func<T, Task> f)
       {
          if (Successful)
@@ -86,7 +85,7 @@ namespace LeagueOfMonads
          return this;
       }
 
-      [DebuggerNonUserCode]
+
       public virtual T ValueOrDefault(T @default = default(T))
       {
          return Successful
@@ -94,7 +93,7 @@ namespace LeagueOfMonads
             : @default;
       }
 
-      [DebuggerNonUserCode]
+
       public virtual T ValueOrDefault(Func<T> f)
       {
          return Successful
@@ -102,7 +101,7 @@ namespace LeagueOfMonads
             : f();
       }
 
-      [DebuggerNonUserCode]
+
       public virtual async Task<T> ValueOrDefault(Func<Task<T>> f)
       {
          return Successful
@@ -117,10 +116,10 @@ namespace LeagueOfMonads
             f(Failure);
             throw new InvalidOperationException("failure action must throw here.");
          }
-         
+
          return Value;
       }
-      
+
       public static implicit operator Result<T, TFailure>(T value)
       {
          return new Result<T, TFailure>(value);
@@ -131,10 +130,15 @@ namespace LeagueOfMonads
          return new Result<T, TFailure>(failure);
       }
    }
-   
+
    public static class Result
    {
-      public static Result<T, TFailure> Success<T, TFailure>(T value) 
+      public static Result<T, TFailure> Create<T, TFailure>(T value)
+      {
+         return new Result<T, TFailure>(value);
+      }
+
+      public static Result<T, TFailure> Success<T, TFailure>(T value)
       {
          return new Result<T, TFailure>(value);
       }
@@ -142,6 +146,6 @@ namespace LeagueOfMonads
       public static Result<T, TFailure> Failure<T, TFailure>(TFailure e)
       {
          return new Result<T, TFailure>(e);
-      }      
-   }   
+      }
+   }
 }

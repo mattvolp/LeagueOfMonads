@@ -1,13 +1,20 @@
 ﻿#if EXPERIMENTAL
 
 using System;
-using LeagueOfMonads.NoLambda;
 using System.Threading.Tasks;
+using LeagueOfMonads.NoLambda;
+
+// ReSharper disable UnusedVariable
+// ReSharper disable UnusedMember.Local
+// ReSharper disable UnusedParameter.Local
+
+#pragma warning disable 1998
 
 namespace LeagueOfMonads.Experimental
 {
    internal class Test
    {
+
       public async Task X()
       {
          var d = Data.Create(3)
@@ -28,7 +35,7 @@ namespace LeagueOfMonads.Experimental
             .Map(IncA)
             .Map(Inc2, "")
             .Map(IncA2, "")
-            .ValueOrDefault();         
+            .ValueOrDefault();
       }
 
       internal void X3()
@@ -49,6 +56,66 @@ namespace LeagueOfMonads.Experimental
             .Tee(TeeMe);
       }
 
+      internal async Task X5()
+      {
+         var x = await Option.From(1)
+            .Map(MaybeAdd, 2)
+            .Map(MaybeAdd, 3)
+            .Map(MaybeAddA, 4)
+            .Map(MaybeAdd, 5)
+            .Map(Inc3, 6);
+      }
+
+      internal async Task X6()
+      {
+         var x = await Return.Create(1)
+            .Map(ReturnAdd, 2)
+            .Map(ReturnAdd, 3)
+            .Map(ReturnAddA, 4)
+            .Map(ReturnAdd, 5)
+            .Map(Inc3, 6);
+      }
+
+      internal async Task X7()
+      {
+         var x = await Result.Create<int, Exception>(1)
+            .Map(ResultAdd, 2)
+            .Map(ResultAdd, 3)
+            .Map(ResultAddA, 4)
+            .Map(ResultAdd, 5)
+            .Map(Inc3, 6);
+      }
+
+      private Result<int, Exception> ResultAdd(int value, int increment)
+      {
+         return value + increment;
+      }
+
+      private Task<Result<int, Exception>> ResultAddA(int value, int increment)
+      {
+         return Task.FromResult(Result.Success<int, Exception>(value + increment));
+      }
+
+      private Return<int> ReturnAdd(int value, int increment)
+      {
+         return value + increment;
+      }
+
+      private Task<Return<int>> ReturnAddA(int value, int increment)
+      {
+         return Task.FromResult(Return.Success(value + increment));
+      }
+
+      private Option<int> MaybeAdd(int value, int increment)
+      {
+         return value + increment;
+      }
+
+      private Task<Option<int>> MaybeAddA(int value, int increment)
+      {
+         return Task.FromResult(Option.From(value + increment));
+      }
+
       private void TeeMe(int i)
       {
          //
@@ -67,6 +134,11 @@ namespace LeagueOfMonads.Experimental
       private Task<Option<int>> PoopA(int arg1, Exception arg2)
       {
          throw new NotImplementedException();
+      }
+
+      private static int Inc3(int v, int i)
+      {
+         return v + i;
       }
 
       private static int Inc(int v)
@@ -109,4 +181,5 @@ namespace LeagueOfMonads.Experimental
    }
 }
 
+#pragma warning restore 1998
 #endif

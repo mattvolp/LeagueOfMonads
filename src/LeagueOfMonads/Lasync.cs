@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace LeagueOfMonads
 {
-   public class Lasync<T>      
+   public class Lasync<T>
    {
       private readonly Func<Task<T>> _factory;
       private Lazy<Task<T>> _value;

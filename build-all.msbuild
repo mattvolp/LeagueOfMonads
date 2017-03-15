@@ -58,7 +58,7 @@
         <ItemGroup>
             <FilesToZip Include="$(ReleaseFolder)\*.*" />
         </ItemGroup>
-        <Zip Files="@(filestozip)" WorkingDirectory="$(ReleaseFolder)" ZipFileName="$(ReleaseFolder)\LeagueOfMonads.0.8.6.zip" />
+        <Zip Files="@(filestozip)" WorkingDirectory="$(ReleaseFolder)" ZipFileName="$(ReleaseFolder)\LeagueOfMonads.0.8.7.zip" />
     </Target>
 	
 	<Target Name="CompleteBuild" DependsOnTargets="Zip" />

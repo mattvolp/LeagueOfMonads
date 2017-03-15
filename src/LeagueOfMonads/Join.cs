@@ -21,7 +21,7 @@
 //      {
 //         return r;
 //      }
-      
+
 //      public virtual void Ignore()
 //      {
 //         // noop
@@ -52,7 +52,7 @@
 //         await f(Value.Item1, Value.Item2);
 //         return this;
 //      }
-      
+
 //      public virtual IEnumerator<Tuple<T1, T2>> GetEnumerator()
 //      {
 //         yield return Value;
@@ -62,7 +62,7 @@
 //      {
 //         return GetEnumerator();
 //      }
-      
+
 //      //public static implicit operator Join<T, T2>(T value)
 //      //{
 //      //   return new Join<T, T2>(value, Value);
@@ -77,3 +77,4 @@
 //      }
 //   }
 //}
+

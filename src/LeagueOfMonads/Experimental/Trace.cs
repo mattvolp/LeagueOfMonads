@@ -1,4 +1,5 @@
-﻿#if EXPERIMENTAL
+﻿
+#if EXPERIMENTAL
 
 namespace LeagueOfMonads.Experimental
 {
@@ -6,7 +7,7 @@ namespace LeagueOfMonads.Experimental
    public class Trace<T>
       : Data<T>
    {
-      public Trace(T value) 
+      public Trace(T value)
          : base(value)
       {
       }

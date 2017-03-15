@@ -1,7 +1,5 @@
 ﻿#if EXPERIMENTAL
 
-using System;
-
 namespace LeagueOfMonads.Experimental
 {
    public class Fun<T1, T2>
