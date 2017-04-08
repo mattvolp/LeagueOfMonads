@@ -16,7 +16,7 @@ ECHO.
 
 IF "%PUBLISH%" == "y" (
 	ECHO Publishing to Nuget...
-	NuGet Push .\release\LeagueOfMonads.0.8.9.nupkg %NUGET_API_KEY_DRIVENDB% -Source https://www.nuget.org/
+	NuGet Push .\release\LeagueOfMonads.0.8.10.nupkg %NUGET_API_KEY_DRIVENDB% -Source https://www.nuget.org/
 	ECHO "Publish complete."
 ) ELSE (
 	ECHO "Publish cancelled."

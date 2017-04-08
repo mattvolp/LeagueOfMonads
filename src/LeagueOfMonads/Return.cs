@@ -117,6 +117,13 @@ namespace LeagueOfMonads
          throw Failure;
       }
 
+      public virtual Return<TResult> Either<TResult>(Func<T, TResult> success, Func<Exception, TResult> failure)
+      {
+         return Successful
+            ? success(Value)
+            : failure(Failure);
+      }
+
       public static implicit operator Return<T>(T value)
       {
          return new Return<T>(value);

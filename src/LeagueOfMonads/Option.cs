@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -12,6 +13,13 @@ namespace LeagueOfMonads
    {
       [DataMember] public readonly bool HasValue;
       [DataMember] public readonly T Value;
+
+      public Option(IEnumerable<T> e)
+      {
+         // ReSharper disable PossibleMultipleEnumeration
+         HasValue = e.Any();
+         Value = e.SingleOrDefault();
+      }
 
       public Option()
       {

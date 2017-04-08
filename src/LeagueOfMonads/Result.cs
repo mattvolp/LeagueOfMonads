@@ -85,6 +85,13 @@ namespace LeagueOfMonads
          return this;
       }
 
+      public virtual Result<TResult, TFailure> Either<TResult>(Func<T, TResult> success, Func<TFailure, TResult> failure)
+      {
+         return Successful
+            ? success(Value)
+            : failure(Failure);
+      }
+
 
       public virtual T ValueOrDefault(T @default = default(T))
       {

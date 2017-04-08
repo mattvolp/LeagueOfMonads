@@ -58,7 +58,7 @@ namespace LeagueOfMonads.Experimental
 
       internal async Task X5()
       {
-         var x = await Option.From(1)
+         var x = await Option.Create(1)
             .Map(MaybeAdd, 2)
             .Map(MaybeAdd, 3)
             .Map(MaybeAddA, 4)
@@ -84,6 +84,12 @@ namespace LeagueOfMonads.Experimental
             .Map(ResultAddA, 4)
             .Map(ResultAdd, 5)
             .Map(Inc3, 6);
+      }
+
+      internal void X8()
+      {
+         //var r = ResultAdd(1, 2)
+         //   .Either(n => n, e => e);
       }
 
       private Result<int, Exception> ResultAdd(int value, int increment)
@@ -113,7 +119,7 @@ namespace LeagueOfMonads.Experimental
 
       private Task<Option<int>> MaybeAddA(int value, int increment)
       {
-         return Task.FromResult(Option.From(value + increment));
+         return Task.FromResult(Option.Create(value + increment));
       }
 
       private void TeeMe(int i)

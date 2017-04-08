@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -11,6 +12,11 @@ namespace LeagueOfMonads
       : IEnumerable<T>
    {
       [DataMember] public readonly T Value;
+
+      public Data(IEnumerable<T> e)
+      {
+         Value = e.Single();
+      }
 
       public Data(T value)
       {
