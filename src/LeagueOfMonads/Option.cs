@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -9,18 +6,10 @@ namespace LeagueOfMonads
 {
    [DataContract]
    public class Option<T>
-      : IEnumerable<T>
    {
       [DataMember] public readonly bool HasValue;
       [DataMember] public readonly T Value;
-
-      public Option(IEnumerable<T> e)
-      {
-         // ReSharper disable PossibleMultipleEnumeration
-         HasValue = e.Any();
-         Value = e.SingleOrDefault();
-      }
-
+      
       public Option()
       {
          HasValue = false;
@@ -133,17 +122,6 @@ namespace LeagueOfMonads
             return Value;
 
          throw f();
-      }
-
-      public virtual IEnumerator<T> GetEnumerator()
-      {
-         if (HasValue)
-            yield return Value;
-      }
-
-      IEnumerator IEnumerable.GetEnumerator()
-      {
-         return GetEnumerator();
       }
 
       public static implicit operator Option<T>(T value)

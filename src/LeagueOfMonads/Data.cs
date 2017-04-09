@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,7 +8,6 @@ namespace LeagueOfMonads
 {
    [DataContract]
    public class Data<T>
-      : IEnumerable<T>
    {
       [DataMember] public readonly T Value;
 
@@ -64,16 +62,6 @@ namespace LeagueOfMonads
       {
          await f(Value);
          return this;
-      }
-
-      public virtual IEnumerator<T> GetEnumerator()
-      {
-         yield return Value;
-      }
-
-      IEnumerator IEnumerable.GetEnumerator()
-      {
-         return GetEnumerator();
       }
 
       public static implicit operator Data<T>(T value)
