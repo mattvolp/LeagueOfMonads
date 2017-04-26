@@ -40,5 +40,15 @@ namespace LeagueOfMonads.Linq
 
          return a;
       }
+
+      public static async Task<IEnumerable<T>> WhenAll<T>(this IEnumerable<Task<T>> tasks)
+      {
+         return await Task.WhenAll(tasks);
+      }
+
+      public static Task WhenAll(this IEnumerable<Task> tasks)
+      {
+         return Task.WhenAll(tasks);
+      }
    }
 }
