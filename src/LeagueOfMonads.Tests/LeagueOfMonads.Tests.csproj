@@ -51,8 +51,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConstructionTests.cs" />
     <Compile Include="JsonSerializationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ImplicitOperatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

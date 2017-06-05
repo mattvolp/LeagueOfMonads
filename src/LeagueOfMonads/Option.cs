@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace LeagueOfMonads
 {
@@ -9,13 +10,9 @@ namespace LeagueOfMonads
    {
       [DataMember] public readonly bool HasValue;
       [DataMember] public readonly T Value;
-      
-      public Option()
-      {
-         HasValue = false;
-      }
 
-      public Option(T value)
+      [JsonConstructor]
+      internal Option(T value)
       {
          HasValue = !Equals(null, value);
          Value = value;
@@ -144,7 +141,7 @@ namespace LeagueOfMonads
 
       public static Option<T> None<T>()
       {
-         return new Option<T>();
+         return new Option<T>(default(T));
       }      
    }
 }

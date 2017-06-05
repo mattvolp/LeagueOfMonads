@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace LeagueOfMonads
 {
@@ -11,16 +12,12 @@ namespace LeagueOfMonads
       [DataMember] public readonly T Value;
       [DataMember] public readonly TFailure Failure;
 
-      public Result(T value)
+      [JsonConstructor]
+      internal Result(bool successful, T value, TFailure failure)
       {
+         Successful = successful;
          Value = value;
-         Successful = true;
-      }
-
-      public Result(TFailure failure)
-      {
          Failure = failure;
-         Successful = false;
       }
 
 
@@ -129,12 +126,12 @@ namespace LeagueOfMonads
 
       public static implicit operator Result<T, TFailure>(T value)
       {
-         return new Result<T, TFailure>(value);
+         return new Result<T, TFailure>(true, value, default(TFailure));
       }
 
       public static implicit operator Result<T, TFailure>(TFailure failure)
       {
-         return new Result<T, TFailure>(failure);
+         return new Result<T, TFailure>(false, default(T), failure);
       }
    }
 
@@ -142,17 +139,17 @@ namespace LeagueOfMonads
    {
       public static Result<T, TFailure> Create<T, TFailure>(T value)
       {
-         return new Result<T, TFailure>(value);
+         return new Result<T, TFailure>(true, value, default(TFailure));
       }
 
       public static Result<T, TFailure> Success<T, TFailure>(T value)
       {
-         return new Result<T, TFailure>(value);
+         return new Result<T, TFailure>(true, value, default(TFailure));
       }
 
       public static Result<T, TFailure> Failure<T, TFailure>(TFailure e)
       {
-         return new Result<T, TFailure>(e);
+         return new Result<T, TFailure>(false, default(T), e);
       }
    }
 }

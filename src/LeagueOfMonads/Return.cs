@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace LeagueOfMonads
 {
@@ -11,16 +12,12 @@ namespace LeagueOfMonads
       [DataMember] public readonly T Value;
       [DataMember] public readonly Exception Failure;
 
-      public Return(T value)
+      [JsonConstructor]
+      internal Return(bool successful, T value, Exception failure)
       {
          Value = value;
-         Successful = true;
-      }
-
-      public Return(Exception failure)
-      {
+         Successful = successful;
          Failure = failure;
-         Successful = false;
       }
 
 
@@ -126,12 +123,12 @@ namespace LeagueOfMonads
 
       public static implicit operator Return<T>(T value)
       {
-         return new Return<T>(value);
+         return new Return<T>(true, value, null);
       }
 
       public static implicit operator Return<T>(Exception failure)
       {
-         return new Return<T>(failure);
+         return new Return<T>(false, default(T), failure);
       }
    }
 
@@ -139,22 +136,22 @@ namespace LeagueOfMonads
    {
       public static Return<T> Create<T>(T value)
       {
-         return new Return<T>(value);
+         return new Return<T>(true, value, null);
       }
 
       public static Return<T> Success<T>(T value)
       {
-         return new Return<T>(value);
+         return new Return<T>(true, value, null);
       }
 
       public static Return<T> Failure<T>(Exception e)
       {
-         return new Return<T>(e);
+         return new Return<T>(false, default(T), e);
       }
 
       public static Return<T> Failure<T>(string message)
       {
-         return new Return<T>(new Exception(message));
+         return new Return<T>(false, default(T), new Exception(message));
       }
    }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace LeagueOfMonads
 {
@@ -11,12 +10,8 @@ namespace LeagueOfMonads
    {
       [DataMember] public readonly T Value;
 
-      public Data(IEnumerable<T> e)
-      {
-         Value = e.Single();
-      }
-
-      public Data(T value)
+      [JsonConstructor]
+      internal Data(T value)
       {
          Value = value;
       }
