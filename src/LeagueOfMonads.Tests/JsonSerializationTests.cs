@@ -30,10 +30,10 @@ namespace LeagueOfMonads.Tests
       }
 
       [TestMethod]
-      public void DataSerializationTest()
+      public void IdentitySerializationTest()
       {
-         var expected = Data.Create("test");
-         var actual = JsonConvert.DeserializeObject<Data<string>>(
+         var expected = Identity.Create("test");
+         var actual = JsonConvert.DeserializeObject<Identity<string>>(
             JsonConvert.SerializeObject(expected));
 
          Assert.AreEqual("test", actual.Value);

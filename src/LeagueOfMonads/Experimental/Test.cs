@@ -17,7 +17,7 @@ namespace LeagueOfMonads.Experimental
 
       public async Task X()
       {
-         var d = Data.Create(3)
+         var d = Identity.Create(3)
             .Map(Y, false);
       }
 
@@ -40,7 +40,7 @@ namespace LeagueOfMonads.Experimental
 
       internal void X3()
       {
-         //Data.Create(3)
+         //Identity.Create(3)
          //   .Join("x")
          //   .Map(Inc2);
 
@@ -50,7 +50,7 @@ namespace LeagueOfMonads.Experimental
 
       internal void X4()
       {
-         var x = Data.Create(3)
+         var x = Identity.Create(3)
             .Tee(TeeMe)
             .Tea(TeeMeA)
             .Tee(TeeMe);

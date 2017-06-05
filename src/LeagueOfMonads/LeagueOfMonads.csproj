@@ -45,8 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Join.cs" />
-    <Compile Include="Data.cs" />
-    <Compile Include="DataEx.cs" />
+    <Compile Include="Identity.cs" />
+    <Compile Include="IdentityEx.cs" />
     <Compile Include="Experimental\Bundle.cs" />
     <Compile Include="Functions\Disposables.cs" />
     <Compile Include="Functions\Objects.cs" />
@@ -67,7 +67,7 @@
     <Compile Include="NoLambda\TaskExtensions.cs" />
     <Compile Include="NoLambda\ReturnExtensions.cs" />
     <Compile Include="NoLambda\OptionExtensions.cs" />
-    <Compile Include="NoLambda\DataExtensions.cs" />
+    <Compile Include="NoLambda\IdentityExtensions.cs" />
     <Compile Include="Linq\SelectEx.cs" />
     <Compile Include="Linq\WhereEx.cs" />
     <Compile Include="OptionEx.cs" />

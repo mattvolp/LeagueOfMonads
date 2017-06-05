@@ -7,9 +7,9 @@ namespace LeagueOfMonads.Tests
    public class ImplicitOperatorTests
    {
       [TestMethod]
-      public void DataImplicitOperatorTest()
+      public void IdentityImplicitOperatorTest()
       {
-         Data<string> value = "test";
+         Identity<string> value = "test";
 
          Assert.AreEqual("test", value.Value);
       }

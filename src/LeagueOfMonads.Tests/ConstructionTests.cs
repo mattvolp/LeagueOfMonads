@@ -7,9 +7,9 @@ namespace LeagueOfMonads.Tests
    public class ConstructionTests
    {
       [TestMethod]
-      public void DataCreateConstructionTest()
+      public void IdentityCreateConstructionTest()
       {
-         var value = Data.Create("test");
+         var value = Identity.Create("test");
 
          Assert.AreEqual("test", value.Value);
       }

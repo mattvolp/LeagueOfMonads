@@ -74,7 +74,7 @@ To provide a collection of monads that work together seemlessly and have a commo
 
 ### Currently Implemented Monads
 
-* Data< T > - This is the equivalent of the Identity type in Haskell.
+* Identity< T > - This is the equivalent of the Identity type in Haskell.
 * Option< T > - This is equivalent to the Option type in F#, or the Maybe type in Haskell
 * Either< T, TOther>
 * Result< T > 
