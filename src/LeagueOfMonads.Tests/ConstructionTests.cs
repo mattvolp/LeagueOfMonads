@@ -33,6 +33,15 @@ namespace LeagueOfMonads.Tests
       }
 
       [TestMethod]
+      public void OptionNoneValueTypeContstructionTest()
+      {
+         var value = Option.None<int>();
+
+         Assert.IsFalse(value.HasValue);
+         Assert.AreEqual(default(int), value.Value);
+      }
+
+      [TestMethod]
       public void OptionCreateSomeConstructionTest()
       {
          var value = Option.Create("test");

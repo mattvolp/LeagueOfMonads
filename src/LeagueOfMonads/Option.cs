@@ -12,12 +12,11 @@ namespace LeagueOfMonads
       [DataMember] public readonly T Value;
 
       [JsonConstructor]
-      internal Option(T value)
+      internal Option(bool hasValue, T value)
       {
-         HasValue = !Equals(null, value);
+         HasValue = hasValue;
          Value = value;
       }
-
 
       public virtual TResult Call<TResult>(TResult r)
       {
@@ -123,7 +122,7 @@ namespace LeagueOfMonads
 
       public static implicit operator Option<T>(T value)
       {
-         return new Option<T>(value);
+         return new Option<T>(!Equals(null, value), value);
       }
    }
 
@@ -131,17 +130,17 @@ namespace LeagueOfMonads
    {
       public static Option<T> Create<T>(T value)
       {
-         return new Option<T>(value);
+         return new Option<T>(!Equals(null, value), value);
       }
 
       public static Option<T> Some<T>(T value)
       {
-         return new Option<T>(value);
+         return new Option<T>(!Equals(null, value), value);
       }
 
       public static Option<T> None<T>()
       {
-         return new Option<T>(default(T));
+         return new Option<T>(false, default(T));
       }      
    }
 }
