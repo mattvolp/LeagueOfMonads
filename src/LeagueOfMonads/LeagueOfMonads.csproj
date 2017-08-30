@@ -78,6 +78,7 @@
     <Compile Include="ResultEx.cs" />
     <Compile Include="ReturnEx.cs" />
     <Compile Include="TaskEx.cs" />
+    <Compile Include="Unions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
