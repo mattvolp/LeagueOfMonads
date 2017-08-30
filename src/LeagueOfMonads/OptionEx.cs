@@ -12,8 +12,7 @@ namespace LeagueOfMonads
             ? o.Value
             : default(T?);
       }
-
-
+      
       public static async Task<TResult> Call<T, TResult>(this Task<Option<T>> t, TResult r)
       {
          return (await t).Call(r);
