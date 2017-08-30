@@ -8,7 +8,9 @@ namespace LeagueOfMonads
       public static T? ToNullable<T>(this Option<T> o)
          where T : struct
       {
-         return o.Value;
+         return o.HasValue
+            ? o.Value
+            : default(T?);
       }
 
 

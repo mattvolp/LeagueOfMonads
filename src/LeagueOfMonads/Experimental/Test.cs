@@ -28,7 +28,7 @@ namespace LeagueOfMonads.Experimental
 
       internal async Task X2()
       {
-         var o = new Option<int>(42);
+         var o = new Option<int>(true, 42);
 
          var x = await o
             .Map(Inc)
