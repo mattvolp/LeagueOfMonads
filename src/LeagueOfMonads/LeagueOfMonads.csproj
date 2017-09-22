@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparers\UnionComparers.cs" />
     <Compile Include="Join.cs" />
     <Compile Include="Identity.cs" />
     <Compile Include="IdentityEx.cs" />

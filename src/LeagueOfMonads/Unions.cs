@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using LeagueOfMonads.Comparers;
 using Newtonsoft.Json;
 
 // ReSharper disable InconsistentNaming
@@ -10,11 +12,16 @@ namespace LeagueOfMonads
    public abstract class Union<TA>
    {
       [DataMember] public readonly TA A;
-      [DataMember] public readonly int Tag;
-
-      [JsonConstructor]      
-      protected Union(TA item) { A = item; Tag = 0; }
+      [DataMember] public readonly UnionType Tag;
       
+      [JsonConstructor]      
+      protected Union(TA item) { A = item; Tag = UnionType.A; }
+
+      public static readonly IEqualityComparer<Union<TA>> Comparer = 
+         new UnionEqualityComparer<TA>();
+
+      public enum UnionType { A }
+
       public T Map<T>(Func<TA, T> fa)
       {
          switch (Tag)
@@ -57,25 +64,30 @@ namespace LeagueOfMonads
    {
       [DataMember] public readonly TA A;
       [DataMember] public readonly TB B;
-      [DataMember] public readonly int Tag;
+      [DataMember] public readonly UnionType Tag;
+
+      public static readonly IEqualityComparer<Union<TA,TB>> Comparer =
+         new UnionEqualityComparer<TA,TB>();
+
+      public enum UnionType { A, B }
 
       [JsonConstructor]
       private Union(TA a, TB b)
       {
          A = a;
          B = b;
-         Tag = A != null ? 0 : 1;
+         Tag = A != null ? UnionType.A : UnionType.B;
       }
 
-      protected Union(TA item) { A = item; Tag = 0; }
-      protected Union(TB item) { B = item; Tag = 1; }
+      protected Union(TA item) { A = item; Tag = UnionType.A; }
+      protected Union(TB item) { B = item; Tag = UnionType.B; }
 
       public T Map<T>(Func<TA, T> fa, Func<TB, T> fb)
       {
          switch (Tag)
          {
-            case 0: return fa(A);
-            case 1: return fb(B);
+            case UnionType.A: return fa(A);
+            case UnionType.B: return fb(B);
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -84,8 +96,8 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: return await fa(A);
-            case 1: return await fb(B);            
+            case UnionType.A: return await fa(A);
+            case UnionType.B: return await fb(B);            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -94,8 +106,8 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: fa(A); break;
-            case 1: fb(B); break;
+            case UnionType.A: fa(A); break;
+            case UnionType.B: fb(B); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -104,8 +116,8 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: await fa(A); break;
-            case 1: await fb(B); break;            
+            case UnionType.A: await fa(A); break;
+            case UnionType.B: await fb(B); break;            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -117,7 +129,12 @@ namespace LeagueOfMonads
       [DataMember] public readonly TA A;
       [DataMember] public readonly TB B;
       [DataMember] public readonly TC C;
-      [DataMember] public readonly int Tag;
+      [DataMember] public readonly UnionType Tag;
+
+      public static readonly IEqualityComparer<Union<TA,TB,TC>> Comparer =
+         new UnionEqualityComparer<TA,TB,TC>();
+
+      public enum UnionType { A, B, C }
 
       [JsonConstructor]
       private Union(TA a, TB b, TC c)
@@ -125,20 +142,22 @@ namespace LeagueOfMonads
          A = a;
          B = b;
          C = c;
-         Tag = A != null ? 0 : B != null ? 1 : 2;
+         Tag = A != null 
+            ? UnionType.A : B != null 
+            ? UnionType.B : UnionType.C;
       }
 
-      protected Union(TA item) { A = item; Tag = 0; }
-      protected Union(TB item) { B = item; Tag = 1; }
-      protected Union(TC item) { C = item; Tag = 2; }
+      protected Union(TA item) { A = item; Tag = UnionType.A; }
+      protected Union(TB item) { B = item; Tag = UnionType.B; }
+      protected Union(TC item) { C = item; Tag = UnionType.C; }
 
       public T Map<T>(Func<TA, T> fa, Func<TB, T> fb, Func<TC, T> fc)
       {
          switch (Tag)
          {
-            case 0: return fa(A);
-            case 1: return fb(B);
-            case 2: return fc(C);
+            case UnionType.A: return fa(A);
+            case UnionType.B: return fb(B);
+            case UnionType.C: return fc(C);
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -147,9 +166,9 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: return await fa(A);
-            case 1: return await fb(B);
-            case 2: return await fc(C);            
+            case UnionType.A: return await fa(A);
+            case UnionType.B: return await fb(B);
+            case UnionType.C: return await fc(C);            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -158,9 +177,9 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: fa(A); break;
-            case 1: fb(B); break;
-            case 2: fc(C); break;
+            case UnionType.A: fa(A); break;
+            case UnionType.B: fb(B); break;
+            case UnionType.C: fc(C); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -169,9 +188,9 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: await fa(A); break;
-            case 1: await fb(B); break;
-            case 2: await fc(C); break;            
+            case UnionType.A: await fa(A); break;
+            case UnionType.B: await fb(B); break;
+            case UnionType.C: await fc(C); break;            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -184,7 +203,12 @@ namespace LeagueOfMonads
       [DataMember] public readonly TB B;
       [DataMember] public readonly TC C;
       [DataMember] public readonly TD D;
-      [DataMember] public readonly int Tag;
+      [DataMember] public readonly UnionType Tag;
+
+      public static readonly IEqualityComparer<Union<TA,TB,TC,TD>> Comparer =
+         new UnionEqualityComparer<TA,TB,TC,TD>();
+
+      public enum UnionType { A, B, C, D }
 
       [JsonConstructor]
       private Union(TA a, TB b, TC c, TD d)
@@ -193,22 +217,25 @@ namespace LeagueOfMonads
          B = b;
          C = c;
          D = d;      
-         Tag = A != null ? 0 : B != null ? 1 : C != null ? 2 : 3;
+         Tag = A != null 
+            ? UnionType.A : B != null 
+            ? UnionType.B : C != null 
+            ? UnionType.C : UnionType.D;
       }
 
-      protected Union(TA item) { A = item; Tag = 0; }
-      protected Union(TB item) { B = item; Tag = 1; }
-      protected Union(TC item) { C = item; Tag = 2; }
-      protected Union(TD item) { D = item; Tag = 3; }
+      protected Union(TA item) { A = item; Tag = UnionType.A; }
+      protected Union(TB item) { B = item; Tag = UnionType.B; }
+      protected Union(TC item) { C = item; Tag = UnionType.C; }
+      protected Union(TD item) { D = item; Tag = UnionType.D; }
       
       public T Map<T>(Func<TA, T> fa, Func<TB, T> fb, Func<TC, T> fc, Func<TD, T> fd)
       {
          switch (Tag)
          {
-            case 0: return fa(A);
-            case 1: return fb(B);
-            case 2: return fc(C);
-            case 3: return fd(D);
+            case UnionType.A: return fa(A);
+            case UnionType.B: return fb(B);
+            case UnionType.C: return fc(C);
+            case UnionType.D: return fd(D);
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -217,10 +244,10 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: return await fa(A);
-            case 1: return await fb(B);
-            case 2: return await fc(C);
-            case 3: return await fd(D);
+            case UnionType.A: return await fa(A);
+            case UnionType.B: return await fb(B);
+            case UnionType.C: return await fc(C);
+            case UnionType.D: return await fd(D);
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -229,10 +256,10 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: fa(A); break;
-            case 1: fb(B); break;
-            case 2: fc(C); break;
-            case 3: fd(D); break;    
+            case UnionType.A: fa(A); break;
+            case UnionType.B: fb(B); break;
+            case UnionType.C: fc(C); break;
+            case UnionType.D: fd(D); break;    
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -241,10 +268,10 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: await fa(A); break;
-            case 1: await fb(B); break;
-            case 2: await fc(C); break;
-            case 3: await fd(D); break;       
+            case UnionType.A: await fa(A); break;
+            case UnionType.B: await fb(B); break;
+            case UnionType.C: await fc(C); break;
+            case UnionType.D: await fd(D); break;       
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -258,7 +285,12 @@ namespace LeagueOfMonads
       [DataMember] public readonly TC C;
       [DataMember] public readonly TD D;
       [DataMember] public readonly TE E;
-      [DataMember] public readonly int Tag;
+      [DataMember] public readonly UnionType Tag;
+
+      public static readonly IEqualityComparer<Union<TA,TB,TC,TD,TE>> Comparer =
+         new UnionEqualityComparer<TA,TB,TC,TD,TE>();
+
+      public enum UnionType { A, B, C, D, E }
 
       [JsonConstructor]
       private Union(TA a, TB b, TC c, TD d, TE e)
@@ -268,24 +300,28 @@ namespace LeagueOfMonads
          C = c;
          D = d;
          E = e;
-         Tag = A != null ? 0 : B != null ? 1 : C != null ? 2 : D != null ? 3 : 4;
+         Tag = A != null 
+            ? UnionType.A : B != null 
+            ? UnionType.B : C != null 
+            ? UnionType.C : D != null 
+            ? UnionType.D : UnionType.E;
       }
 
-      protected Union(TA item) { A = item; Tag = 0; }
-      protected Union(TB item) { B = item; Tag = 1; }
-      protected Union(TC item) { C = item; Tag = 2; }
-      protected Union(TD item) { D = item; Tag = 3; }
-      protected Union(TE item) { E = item; Tag = 4; }
+      protected Union(TA item) { A = item; Tag = UnionType.A; }
+      protected Union(TB item) { B = item; Tag = UnionType.B; }
+      protected Union(TC item) { C = item; Tag = UnionType.C; }
+      protected Union(TD item) { D = item; Tag = UnionType.D; }
+      protected Union(TE item) { E = item; Tag = UnionType.E; }
 
       public T Map<T>(Func<TA, T> fa, Func<TB, T> fb, Func<TC, T> fc, Func<TD, T> fd, Func<TE, T> fe)
       {
          switch (Tag)
          {
-            case 0: return fa(A);
-            case 1: return fb(B);
-            case 2: return fc(C);
-            case 3: return fd(D);
-            case 4: return fe(E);
+            case UnionType.A: return fa(A);
+            case UnionType.B: return fb(B);
+            case UnionType.C: return fc(C);
+            case UnionType.D: return fd(D);
+            case UnionType.E: return fe(E);
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -294,11 +330,11 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: return await fa(A);
-            case 1: return await fb(B);
-            case 2: return await fc(C);
-            case 3: return await fd(D);
-            case 4: return await fe(E);
+            case UnionType.A: return await fa(A);
+            case UnionType.B: return await fb(B);
+            case UnionType.C: return await fc(C);
+            case UnionType.D: return await fd(D);
+            case UnionType.E: return await fe(E);
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -307,11 +343,11 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: fa(A); break;
-            case 1: fb(B); break;
-            case 2: fc(C); break;
-            case 3: fd(D); break;
-            case 4: fe(E); break;
+            case UnionType.A: fa(A); break;
+            case UnionType.B: fb(B); break;
+            case UnionType.C: fc(C); break;
+            case UnionType.D: fd(D); break;
+            case UnionType.E: fe(E); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -320,11 +356,11 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: await fa(A); break;
-            case 1: await fb(B); break;
-            case 2: await fc(C); break;
-            case 3: await fd(D); break;
-            case 4: await fe(E); break;
+            case UnionType.A: await fa(A); break;
+            case UnionType.B: await fb(B); break;
+            case UnionType.C: await fc(C); break;
+            case UnionType.D: await fd(D); break;
+            case UnionType.E: await fe(E); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
