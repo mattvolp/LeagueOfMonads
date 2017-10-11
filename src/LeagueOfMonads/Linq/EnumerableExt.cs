@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace LeagueOfMonads.Linq
 {
-   public static class EnumerableEx
+   public static class EnumerableExt
    {
       public static void EvaluateAndIgnore<T>(this IEnumerable<T> e)
       {

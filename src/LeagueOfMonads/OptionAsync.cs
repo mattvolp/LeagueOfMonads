@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace LeagueOfMonads
 {
-   public static class OptionEx
+   public static class OptionAsync
    {
       public static T? ToNullable<T>(this Option<T> o)
          where T : struct

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using LeagueOfMonads.Comparers;
-using Newtonsoft.Json;
 
 // ReSharper disable InconsistentNaming
 namespace LeagueOfMonads
@@ -13,9 +11,12 @@ namespace LeagueOfMonads
    {
       [DataMember] public readonly TA A;
       [DataMember] public readonly UnionType Tag;
-      
-      [JsonConstructor]      
-      protected Union(TA item) { A = item; Tag = UnionType.A; }
+
+      protected Union(TA item)
+      {
+         A = item;
+         Tag = UnionType.A;
+      }
 
       public static readonly IEqualityComparer<Union<TA>> Comparer = 
          new UnionEqualityComparer<TA>();
@@ -26,7 +27,7 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: return fa(A);
+            case UnionType.A: return fa(A);
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -35,7 +36,7 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: return await fa(A);            
+            case UnionType.A: return await fa(A);            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -44,7 +45,7 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: fa(A); break;
+            case UnionType.A: fa(A); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -53,7 +54,7 @@ namespace LeagueOfMonads
       {
          switch (Tag)
          {
-            case 0: await fa(A); break;            
+            case UnionType.A: await fa(A); break;            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
       }
@@ -71,8 +72,7 @@ namespace LeagueOfMonads
 
       public enum UnionType { A, B }
 
-      [JsonConstructor]
-      private Union(TA a, TB b)
+      protected Union(TA a, TB b)
       {
          A = a;
          B = b;
@@ -136,8 +136,7 @@ namespace LeagueOfMonads
 
       public enum UnionType { A, B, C }
 
-      [JsonConstructor]
-      private Union(TA a, TB b, TC c)
+      protected Union(TA a, TB b, TC c)
       {
          A = a;
          B = b;
@@ -209,9 +208,8 @@ namespace LeagueOfMonads
          new UnionEqualityComparer<TA,TB,TC,TD>();
 
       public enum UnionType { A, B, C, D }
-
-      [JsonConstructor]
-      private Union(TA a, TB b, TC c, TD d)
+      
+      protected Union(TA a, TB b, TC c, TD d)
       {
          A = a;
          B = b;
@@ -292,8 +290,7 @@ namespace LeagueOfMonads
 
       public enum UnionType { A, B, C, D, E }
 
-      [JsonConstructor]
-      private Union(TA a, TB b, TC c, TD d, TE e)
+      protected Union(TA a, TB b, TC c, TD d, TE e)
       {
          A = a;
          B = b;

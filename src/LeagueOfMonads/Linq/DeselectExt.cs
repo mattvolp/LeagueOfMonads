@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LeagueOfMonads.Linq
 {
-   public static class DeselectEx
+   public static class DeselectExt
    {
       public static IEnumerable<TResult> Deselect<T1, T2, TResult>(this IEnumerable<Tuple<T1, T2>> tuples, Func<T1, T2, TResult> selector)
       {

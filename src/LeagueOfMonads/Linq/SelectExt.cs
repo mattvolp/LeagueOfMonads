@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace LeagueOfMonads.Linq
 {
-   public static class SelectEx
+   public static class SelectExt
    {
       public static IEnumerable<O> Select<T, A, O>(this IEnumerable<T> e, Func<T, A, O> f, A a)
       {

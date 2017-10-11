@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace LeagueOfMonads
 {
@@ -11,8 +10,7 @@ namespace LeagueOfMonads
       [DataMember] public readonly bool HasValue;
       [DataMember] public readonly T Value;
 
-      [JsonConstructor]
-      internal Option(bool hasValue, T value)
+      public Option(bool hasValue, T value)
       {
          HasValue = hasValue;
          Value = value;

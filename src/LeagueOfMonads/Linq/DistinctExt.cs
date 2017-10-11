@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LeagueOfMonads.Linq
 {
-   public static class DistinctEx
+   public static class DistinctExt
    {
       public static IEnumerable<T> DistinctBy<T, A>(this IEnumerable<T> source, Func<T, A> selector)
          where A : struct

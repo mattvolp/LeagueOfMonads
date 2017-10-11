@@ -1,6 +1,4 @@
-﻿#if EXPERIMENTAL
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using LeagueOfMonads.NoLambda;
 
@@ -10,7 +8,7 @@ using LeagueOfMonads.NoLambda;
 
 #pragma warning disable 1998
 
-namespace LeagueOfMonads.Experimental
+namespace LeagueOfMonads.Tests
 {
    internal class Test
    {
@@ -188,4 +186,3 @@ namespace LeagueOfMonads.Experimental
 }
 
 #pragma warning restore 1998
-#endif

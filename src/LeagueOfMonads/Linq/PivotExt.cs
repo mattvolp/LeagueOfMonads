@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LeagueOfMonads.Linq
 {
-   public static class PivotEx
+   public static class PivotExt
    {
       public static IEnumerable<TResult> Pivot<T, TResult>(this IEnumerable<T> items, Func<T, T, TResult> selector)
       {

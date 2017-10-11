@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LeagueOfMonads.Linq
 {
-   public static class IterateEx
+   public static class IterateExt
    {
       public static IEnumerable<T> Iterate<T>(this IEnumerable<T> e, Action<T> action)
       {

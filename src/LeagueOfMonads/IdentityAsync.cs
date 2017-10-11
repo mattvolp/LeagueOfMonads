@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace LeagueOfMonads
 {
-   public static class IdentityEx
+   public static class IdentityAsync
    {
       public static async Task<TResult> Call<T, TResult>(this Task<Identity<T>> t, TResult r)
       {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace LeagueOfMonads
 {
@@ -12,14 +11,12 @@ namespace LeagueOfMonads
       [DataMember] public readonly T Value;
       [DataMember] public readonly Exception Failure;
 
-      [JsonConstructor]
-      internal Return(bool successful, T value, Exception failure)
+      public Return(bool successful, T value, Exception failure)
       {
          Value = value;
          Successful = successful;
          Failure = failure;
       }
-
 
       public virtual TResult Call<TResult>(TResult r)
       {

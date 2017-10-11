@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using LeagueOfMonads.Functions;
 
-namespace LeagueOfMonads.Comparers
+namespace LeagueOfMonads
 {
    public class UnionEqualityComparer<TA> : IEqualityComparer<Union<TA>>
    {

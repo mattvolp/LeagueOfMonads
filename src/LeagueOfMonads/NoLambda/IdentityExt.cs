@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LeagueOfMonads.NoLambda
 {
-   public static class IdentityExtensions
+   public static class IdentityExt
    {
       // MAP #1
 

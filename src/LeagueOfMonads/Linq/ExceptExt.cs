@@ -2,7 +2,7 @@
 
 namespace LeagueOfMonads.Linq
 {
-   public static class ExceptEx
+   public static class ExceptExt
    {
       public static IEnumerable<T> ExceptAll<T>(this IEnumerable<T> first, IEnumerable<T> second)
       {

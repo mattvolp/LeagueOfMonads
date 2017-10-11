@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace LeagueOfMonads
 {
-   public static class TaskEx
+   public static class TaskAsync
    {
       public static TResult Call<T, TResult>(this Task<T> t, TResult r)
       {

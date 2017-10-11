@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace LeagueOfMonads.Linq
 {
-   public static class WhereEx
+   public static class WhereExt
    {
       public static IEnumerable<T> Where<T, A>(this IEnumerable<T> e, Func<T, A, bool> f, A a)
       {
