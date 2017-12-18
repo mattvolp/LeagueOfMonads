@@ -41,22 +41,24 @@ namespace LeagueOfMonads
          }
       }
 
-      public void Tee(Action<TA> fa)
+      public Union<TA> Tee(Action<TA> fa)
       {
          switch (Tag)
          {
             case UnionType.A: fa(A); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
 
-      public async Task Tea(Func<TA, Task> fa)
+      public async Task<Union<TA>> Tea(Func<TA, Task> fa)
       {
          switch (Tag)
          {
             case UnionType.A: await fa(A); break;            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
    }
 
@@ -102,7 +104,7 @@ namespace LeagueOfMonads
          }
       }
 
-      public void Tee(Action<TA> fa, Action<TB> fb)
+      public Union<TA, TB> Tee(Action<TA> fa, Action<TB> fb)
       {
          switch (Tag)
          {
@@ -110,9 +112,10 @@ namespace LeagueOfMonads
             case UnionType.B: fb(B); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
 
-      public async Task Tea(Func<TA, Task> fa, Func<TB, Task> fb)
+      public async Task<Union<TA, TB>> Tea(Func<TA, Task> fa, Func<TB, Task> fb)
       {
          switch (Tag)
          {
@@ -120,6 +123,7 @@ namespace LeagueOfMonads
             case UnionType.B: await fb(B); break;            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
    }
 
@@ -172,7 +176,7 @@ namespace LeagueOfMonads
          }
       }
 
-      public void Tee(Action<TA> fa, Action<TB> fb, Action<TC> fc)
+      public Union<TA, TB, TC> Tee(Action<TA> fa, Action<TB> fb, Action<TC> fc)
       {
          switch (Tag)
          {
@@ -181,9 +185,10 @@ namespace LeagueOfMonads
             case UnionType.C: fc(C); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
 
-      public async Task Tea(Func<TA, Task> fa, Func<TB, Task> fb, Func<TC, Task> fc)
+      public async Task<Union<TA, TB, TC>> Tea(Func<TA, Task> fa, Func<TB, Task> fb, Func<TC, Task> fc)
       {
          switch (Tag)
          {
@@ -192,6 +197,7 @@ namespace LeagueOfMonads
             case UnionType.C: await fc(C); break;            
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
    }
 
@@ -250,7 +256,7 @@ namespace LeagueOfMonads
          }
       }
 
-      public void Tee(Action<TA> fa, Action<TB> fb, Action<TC> fc, Action<TD> fd)
+      public Union<TA, TB, TC, TD> Tee(Action<TA> fa, Action<TB> fb, Action<TC> fc, Action<TD> fd)
       {
          switch (Tag)
          {
@@ -260,9 +266,10 @@ namespace LeagueOfMonads
             case UnionType.D: fd(D); break;    
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
 
-      public async Task Tea(Func<TA, Task> fa, Func<TB, Task> fb, Func<TC, Task> fc, Func<TD, Task> fd)
+      public async Task<Union<TA, TB, TC, TD>> Tea(Func<TA, Task> fa, Func<TB, Task> fb, Func<TC, Task> fc, Func<TD, Task> fd)
       {
          switch (Tag)
          {
@@ -272,6 +279,7 @@ namespace LeagueOfMonads
             case UnionType.D: await fd(D); break;       
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
    }
 
@@ -336,7 +344,7 @@ namespace LeagueOfMonads
          }
       }
 
-      public void Tee(Action<TA> fa, Action<TB> fb, Action<TC> fc, Action<TD> fd, Action<TE> fe)
+      public Union<TA, TB, TC, TD, TE> Tee(Action<TA> fa, Action<TB> fb, Action<TC> fc, Action<TD> fd, Action<TE> fe)
       {
          switch (Tag)
          {
@@ -347,9 +355,10 @@ namespace LeagueOfMonads
             case UnionType.E: fe(E); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
 
-      public async Task Tea(Func<TA, Task> fa, Func<TB, Task> fb, Func<TC, Task> fc, Func<TD, Task> fd, Func<TE, Task> fe)
+      public async Task<Union<TA, TB, TC, TD, TE>> Tea(Func<TA, Task> fa, Func<TB, Task> fb, Func<TC, Task> fc, Func<TD, Task> fd, Func<TE, Task> fe)
       {
          switch (Tag)
          {
@@ -360,6 +369,7 @@ namespace LeagueOfMonads
             case UnionType.E: await fe(E); break;
             default: throw new Exception("Unrecognized tag value: " + Tag);
          }
+         return this;
       }
    }
 }

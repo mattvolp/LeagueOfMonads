@@ -36,6 +36,7 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoLambda\UnionExt.cs" />
     <Compile Include="UnionComparers.cs" />
     <Compile Include="Identity.cs" />
     <Compile Include="IdentityAsync.cs" />
