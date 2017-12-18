@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{170B146E-BDA1-49D7-B219-F7E1753DA222}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LeagueOfMonads__PCL_</RootNamespace>
+    <AssemblyName>LeagueOfMonads [PCL]</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PCL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;PCL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\LeagueOfMonads\Experimental\Reval.cs">
+      <Link>Experimental\Reval.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Functions\Disposables.cs">
+      <Link>Functions\Disposables.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Functions\Objects.cs">
+      <Link>Functions\Objects.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Functions\Strings.cs">
+      <Link>Functions\Strings.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Identity.cs">
+      <Link>Identity.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\IdentityAsync.cs">
+      <Link>IdentityAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Lasync.cs">
+      <Link>Lasync.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\DeselectExt.cs">
+      <Link>Linq\DeselectExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\DistinctExt.cs">
+      <Link>Linq\DistinctExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\EnumerableExt.cs">
+      <Link>Linq\EnumerableExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\ExceptExt.cs">
+      <Link>Linq\ExceptExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\IterateExt.cs">
+      <Link>Linq\IterateExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\PivotExt.cs">
+      <Link>Linq\PivotExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\SelectExt.cs">
+      <Link>Linq\SelectExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Linq\WhereExt.cs">
+      <Link>Linq\WhereExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\NoLambda\IdentityExt.cs">
+      <Link>NoLambda\IdentityExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\NoLambda\OptionExt.cs">
+      <Link>NoLambda\OptionExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\NoLambda\ResultExt.cs">
+      <Link>NoLambda\ResultExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\NoLambda\ReturnExt.cs">
+      <Link>NoLambda\ReturnExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\NoLambda\TaskExt.cs">
+      <Link>NoLambda\TaskExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\NoLambda\UnionExt.cs">
+      <Link>NoLambda\UnionExt.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Option.cs">
+      <Link>Option.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\OptionAsync.cs">
+      <Link>OptionAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Result.cs">
+      <Link>Result.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\ResultAsync.cs">
+      <Link>ResultAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Return.cs">
+      <Link>Return.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\ReturnAsync.cs">
+      <Link>ReturnAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\TaskAsync.cs">
+      <Link>TaskAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\UnionComparers.cs">
+      <Link>UnionComparers.cs</Link>
+    </Compile>
+    <Compile Include="..\LeagueOfMonads\Unions.cs">
+      <Link>Unions.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
