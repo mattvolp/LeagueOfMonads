@@ -25,8 +25,8 @@
 		
 		<!-- CORE -->
 		
-		<BuildOutput Include="Src\LeagueOfMonads\bin\Release\LeagueOfMonads.dll" />
-		<BuildOutput Include="Src\LeagueOfMonads\bin\Release\LeagueOfMonads.pdb" />
+		<BuildOutput Include="Src\LeagueOfMonads.Pcl\bin\Release\LeagueOfMonads.Pcl.dll" />
+		<BuildOutput Include="Src\LeagueOfMonads.Pcl\bin\Release\LeagueOfMonads.Pcl.pdb" />
 	</ItemGroup>
 	
 	<!-- BUILD -->
@@ -57,7 +57,7 @@
         <ItemGroup>
             <FilesToZip Include="$(ReleaseFolder)\*.*" />
         </ItemGroup>
-        <Zip Files="@(filestozip)" WorkingDirectory="$(ReleaseFolder)" ZipFileName="$(ReleaseFolder)\LeagueOfMonads.1.4.0.zip" />
+        <Zip Files="@(filestozip)" WorkingDirectory="$(ReleaseFolder)" ZipFileName="$(ReleaseFolder)\LeagueOfMonads.Pcl.1.4.0.zip" />
     </Target>
 	
 	<Target Name="CompleteBuild" DependsOnTargets="Zip" />
