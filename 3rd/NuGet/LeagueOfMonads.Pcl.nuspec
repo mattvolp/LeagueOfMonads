@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
 	<metadata>
-		<id>LeagueOfMonads</id>
+		<id>LeagueOfMonads.Pcl</id>
 		<version>1.4.0</version>
 		<authors>Anthony Leatherwood</authors>
 		<owners>aleatherwood</owners>
@@ -16,9 +16,9 @@
 		<tags>monad rop railway oriented league monads</tags>    
 	</metadata>  
 	<files>
-		<file src="..\..\Release\*.dll" target="lib\net45" exclude="*.Pcl.dll"/> 
-		<file src="..\..\Release\*.exe" target="lib\net45" exclude="*.Pcl.exe"/> 
-		<file src="..\..\Release\*.pdb" target="lib\net45" exclude="*.Pcl.pdb"/> 			 
-		<file src="..\..\Release\*.xml" target="lib\net45" exclude="*.Pcl.xml"/> 			 
+		<file src="..\..\Release\*.Pcl.dll" target="lib\portable-net45+win8" /> 
+		<file src="..\..\Release\*.Pcl.exe" target="lib\portable-net45+win8" /> 
+		<file src="..\..\Release\*.Pcl.pdb" target="lib\portable-net45+win8" /> 			 
+		<file src="..\..\Release\*.Pcl.xml" target="lib\portable-net45+win8" /> 			 
 	</files>
 </package>

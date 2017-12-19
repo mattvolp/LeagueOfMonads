@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueOfMonads.Tests", "LeagueOfMonads.Tests\LeagueOfMonads.Tests.csproj", "{CE36AAC9-E71D-47BA-8157-4EDCA786ED82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueOfMonads [PCL]", "LeagueOfMonads [PCL]\LeagueOfMonads [PCL].csproj", "{170B146E-BDA1-49D7-B219-F7E1753DA222}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueOfMonads.Pcl", "LeagueOfMonads.Pcl\LeagueOfMonads.Pcl.csproj", "{170B146E-BDA1-49D7-B219-F7E1753DA222}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
