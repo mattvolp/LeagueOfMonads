@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="ConstructionTests.cs" />
     <Compile Include="JsonSerializationTests.cs" />
+    <Compile Include="NoLambda\TaskExt.cs" />
     <Compile Include="OptionsExTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ImplicitOperatorTests.cs" />

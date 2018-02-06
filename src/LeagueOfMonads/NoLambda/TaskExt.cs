@@ -72,19 +72,19 @@ namespace LeagueOfMonads.NoLambda
 
       public static async Task<T> Tea<T, A>(this Task<T> m, Func<T, A, Task> f, A a)
       {
-         return await m.Tee(t => f(t, a));
+         return await m.Tea(async t => await f(t, a));
       }
 
 
       public static async Task<T> Tea<T, A, B>(this Task<T> m, Func<T, A, B, Task> f, A a, B b)
       {
-         return await m.Tee(t => f(t, a, b));
+         return await m.Tea(async t => await f(t, a, b));
       }
 
 
       public static async Task<T> Tea<T, A, B, C>(this Task<T> m, Func<T, A, B, C, Task> f, A a, B b, C c)
       {
-         return await m.Tee(t => f(t, a, b, c));
+         return await m.Tea(async t => await f(t, a, b, c));
       }
    }
 }
