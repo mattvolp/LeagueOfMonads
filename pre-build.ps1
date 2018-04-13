@@ -1,6 +1,6 @@
 
-$old_version = '1.5.2.3'
-$gnu_version = '1.5.2.4'
+$old_version = '1.5.2.4'
+$gnu_version = '1.5.2.5'
 $files = ".\src\LeagueOfMonads.Core\LeagueOfMonads.Core.csproj", `
          ".\src\LeagueOfMonads.Core\Properties\AssemblyInfo.cs"
 
