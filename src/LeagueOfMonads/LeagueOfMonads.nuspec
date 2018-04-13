@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<authors>$author$</authors>
+		<owners>aleatherwood</owners>
+		<licenseUrl>https://github.com/adleatherwood/LeagueOfMonads/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/adleatherwood/LeagueOfMonads</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/adleatherwood/LeagueOfMonads/master/icon.png</iconUrl>
+		<description>$description$</description>
+			<!--<summary>
+			</summary>-->
+		<releaseNotes>Please visit the github site for release notes.</releaseNotes>
+		<copyright>$copyright$</copyright>
+		<tags>monad rop railway oriented league monads</tags>    
+	</metadata>  	
+	<files>
+		<file src="bin\Release\*.dll" target="lib\net45" /> 	
+	</files>
+</package>

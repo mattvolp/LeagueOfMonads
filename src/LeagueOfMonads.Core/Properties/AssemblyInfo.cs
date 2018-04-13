@@ -9,11 +9,11 @@ using System.Runtime.InteropServices;
 #if !NETSTANDARD2_0
 
 [assembly: AssemblyTitle("LeagueOfMonads")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A gathering place for things that identify as monads but are C# in orientation")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Anthony Leatherwood")]
 [assembly: AssemblyProduct("LeagueOfMonads")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
