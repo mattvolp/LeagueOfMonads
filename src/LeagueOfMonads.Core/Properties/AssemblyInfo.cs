@@ -28,21 +28,21 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("a4638a48-3b5d-4cbb-a171-e36a7a5954ac")]
 
-// Version(1.5.2.2")
+// Version(1.5.2.3")
 //
-//      Major Version("1.5.2.2")
-//      Minor Version("1.5.2.2")
+//      Major Version("1.5.2.3")
+//      Minor Version("1.5.2.3")
 //      Build Number
 //      Revision
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.5.2.2")]
+// [assembly: AssemblyVersion("1.5.2.3")]
 
 #if !NETSTANDARD2_0
 
-[assembly: AssemblyVersion("1.5.2.2")]
-[assembly: AssemblyFileVersion("1.5.2.2")]
+[assembly: AssemblyVersion("1.5.2.3")]
+[assembly: AssemblyFileVersion("1.5.2.3")]
 
 #endif
 
