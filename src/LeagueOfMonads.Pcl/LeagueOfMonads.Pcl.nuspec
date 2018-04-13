@@ -2,6 +2,7 @@
 <package >
 	<metadata>
 		<id>$id$</id>
+		<title>LeagueOfMonads.Pcl</title>
 		<version>$version$</version>
 		<authors>Anthony Leatherwood</authors>
 		<owners>aleatherwood</owners>

@@ -6,7 +6,7 @@
     <Version>1.5.2.3</Version>
     <Authors>Anthony Leatherwood</Authors>
     <Owners>adleatherwood</Owners>
-    <Title>LeagueOfMonads</Title>
+    <Title>LeagueOfMonads.Core</Title>
     <Description>A gathering place for things that identify as monads but are C# in orientation</Description>
     <Copyright>Copyright © 2017</Copyright>    
   </PropertyGroup>
