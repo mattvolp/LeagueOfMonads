@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
+#if !NETSTANDARD2_0
+
 [assembly: AssemblyTitle("LeagueOfMonads")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -15,6 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+#endif
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
@@ -36,7 +39,11 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
+#if !NETSTANDARD2_0
+
 [assembly: AssemblyVersion("1.5.2")]
 [assembly: AssemblyFileVersion("1.5.2")]
+
+#endif
 
 [assembly: InternalsVisibleTo("LeagueOfMonads.Tests")] 
