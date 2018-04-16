@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.2.3</Version>
+    <Version>1.5.2.6</Version>
     <Authors>Anthony Leatherwood</Authors>
     <Owners>adleatherwood</Owners>
     <Title>LeagueOfMonads.Core</Title>

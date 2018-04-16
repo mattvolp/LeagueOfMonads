@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Anthony Leatherwood")]
 [assembly: AssemblyProduct("LeagueOfMonads")]
-[assembly: AssemblyCopyright("Copyright © 2017")]
+[assembly: AssemblyCopyright("Copyright � 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,21 +28,21 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("a4638a48-3b5d-4cbb-a171-e36a7a5954ac")]
 
-// Version(1.5.2.3")
+// Version(1.5.2.6")
 //
-//      Major Version("1.5.2.3")
-//      Minor Version("1.5.2.3")
+//      Major Version("1.5.2.6")
+//      Minor Version("1.5.2.6")
 //      Build Number
 //      Revision
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.5.2.3")]
+// [assembly: AssemblyVersion("1.5.2.6")]
 
 #if !NETSTANDARD2_0
 
-[assembly: AssemblyVersion("1.5.2.3")]
-[assembly: AssemblyFileVersion("1.5.2.3")]
+[assembly: AssemblyVersion("1.5.2.6")]
+[assembly: AssemblyFileVersion("1.5.2.6")]
 
 #endif
 
