@@ -11,4 +11,10 @@
     <Copyright>Copyright © 2017</Copyright>    
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <Import Project="..\LeagueOfMonads.Shared\LeagueOfMonads.Shared.projitems" Label="Shared" />
+
 </Project>

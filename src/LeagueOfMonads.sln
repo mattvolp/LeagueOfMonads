@@ -16,7 +16,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueOfMonads.Pcl", "Leagu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueOfMonads.Core", "LeagueOfMonads.Core\LeagueOfMonads.Core.csproj", "{FAE37105-63B8-4539-B0CE-D0D8399EB55E}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "LeagueOfMonads.Shared", "LeagueOfMonads.Shared\LeagueOfMonads.Shared.shproj", "{E2712CDF-F68B-49EC-BB6D-94BC4C6D1A15}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		LeagueOfMonads.Shared\LeagueOfMonads.Shared.projitems*{170b146e-bda1-49d7-b219-f7e1753da222}*SharedItemsImports = 4
+		LeagueOfMonads.Shared\LeagueOfMonads.Shared.projitems*{a4638a48-3b5d-4cbb-a171-e36a7a5954ac}*SharedItemsImports = 4
+		LeagueOfMonads.Shared\LeagueOfMonads.Shared.projitems*{e2712cdf-f68b-49ec-bb6d-94bc4c6d1a15}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

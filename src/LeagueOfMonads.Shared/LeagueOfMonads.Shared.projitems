@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e2712cdf-f68b-49ec-bb6d-94bc4c6d1a15</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>LeagueOfMonads.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Experimental\Reval.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Functions\Disposables.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Functions\Objects.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Functions\Strings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Identity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdentityAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Lasync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\DeselectExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\DistinctExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\EnumerableExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\ExceptExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\IterateExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\PivotExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\SelectExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\WhereExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NoLambda\IdentityExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NoLambda\OptionExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NoLambda\ResultExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NoLambda\ReturnExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NoLambda\TaskExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NoLambda\UnionExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Option.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Result.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResultAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Return.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReturnAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TaskAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnionComparers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unions.cs" />
+  </ItemGroup>
+</Project>
