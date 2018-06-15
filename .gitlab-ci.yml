@@ -1,0 +1,9 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image: microsoft/dotnet:sdk
+  script:
+    - cd src/LeagueOfMonads.Core
+    - dotnet build
