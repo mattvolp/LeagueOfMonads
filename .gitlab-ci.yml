@@ -5,6 +5,7 @@ build:
   stage: build
   image: microsoft/dotnet:sdk
   script:
+    - wget https://www.computerhope.com/
     - chmod +x zero29.sh
     - ./zero29.sh -i minor    
     - cd src/LeagueOfMonads.Core
