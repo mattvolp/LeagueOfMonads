@@ -4,6 +4,9 @@ A gathering place for things that identify as monads but are C# in orientation
 
 <img src="https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true" alt="Project Badge">
 
+[![pipeline status](https://gitlab.com/adleatherwood/LeagueOfMonads/badges/master/pipeline.svg)](https://gitlab.com/adleatherwood/LeagueOfMonads/commits/master)
+[![coverage report](https://gitlab.com/adleatherwood/LeagueOfMonads/badges/master/coverage.svg)](https://gitlab.com/adleatherwood/LeagueOfMonads/commits/master)
+
 ### Goal
 
 To provide a collection of monads that work together seemlessly and have a common set of named functions between them.
