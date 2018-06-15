@@ -5,7 +5,9 @@ build:
   stage: build
   image: microsoft/dotnet:sdk
   script:
-    - cd src/LeagueOfMonads.Core
     - zero29.sh -i minor
     - zero29.sh -l
+    - cd src/LeagueOfMonads.Core
     - dotnet build
+    - cd ../..
+    - zero29.sh -l
