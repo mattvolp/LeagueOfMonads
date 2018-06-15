@@ -6,9 +6,6 @@ build:
   image: microsoft/dotnet:sdk
   script:
     - chmod +x zero29.sh
-    - ./zero29.sh -i minor
-    - ./zero29.sh -l
+    - ./zero29.sh -i minor    
     - cd src/LeagueOfMonads.Core
-    - dotnet build
-    - cd ../..
-    - ./zero29.sh -l
+    - dotnet build    
