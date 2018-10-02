@@ -87,6 +87,35 @@ namespace LeagueOfMonads
             : failure(Failure);
       }
 
+      public virtual Result<T, TResult> MapFailure<TResult>(Func<TFailure, TResult> f)
+      {
+         return Successful
+            ? Result.Success<T, TResult>(Value)
+            : f(Failure);
+      }
+
+      public virtual async Task<Result<T, TResult>> MapFailure<TResult>(Func<TFailure, Task<TResult>> f)
+      {
+         return Successful
+            ? Result.Success<T, TResult>(Value)
+            : await f(Failure);
+      }
+
+      public virtual Result<T, TFailure> TeeFailure(Action<TFailure> f)
+      {
+         if (!Successful)
+            f(Failure);
+
+         return this;
+      }
+
+      public virtual async Task<Result<T, TFailure>> TeaFailure(Func<TFailure, Task> f)
+      {
+         if (!Successful)
+            await f(Failure);
+
+         return this;
+      }
 
       public virtual T ValueOrDefault(T @default = default(T))
       {

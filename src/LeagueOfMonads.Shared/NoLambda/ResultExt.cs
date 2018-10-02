@@ -246,5 +246,141 @@ namespace LeagueOfMonads.NoLambda
       {
          return await (await m).Tea(t => f(t, a, b, c));
       }
+
+      // MAP FAILURE #1
+
+      public static Result<T, TResult> MapFailure<T, A, TFailure, TResult>(this Result<T, TFailure> m, Func<TFailure, A, TResult> f, A a)
+      {
+         return m.MapFailure(t => f(t, a));
+      }
+
+      public static Result<T, TResult> MapFailure<T, A, B, TFailure, TResult>(this Result<T, TFailure> m, Func<TFailure, A, B, TResult> f, A a, B b)
+      {
+         return m.MapFailure(t => f(t, a, b));
+      }
+
+      public static Result<T, TResult> MapFailure<T, A, B, C, TFailure, TResult>(this Result<T, TFailure> m, Func<TFailure, A, B, C, TResult> f, A a, B b, C c)
+      {
+         return m.MapFailure(t => f(t, a, b, c));
+      }
+
+      // MAP FAILURE #2
+
+      public static Task<Result<T, TResult>> MapFailure<T, A, TFailure, TResult>(this Result<T, TFailure> m, Func<TFailure, A, Task<TResult>> f, A a)
+      {
+         return m.MapFailure(t => f(t, a));
+      }
+
+      public static Task<Result<T, TResult>> MapFailure<T, A, B, TFailure, TResult>(this Result<T, TFailure> m, Func<TFailure, A, B, Task<TResult>> f, A a, B b)
+      {
+         return m.MapFailure(t => f(t, a, b));
+      }
+
+      public static Task<Result<T, TResult>> MapFailure<T, A, B, C, TFailure, TResult>(this Result<T, TFailure> m, Func<TFailure, A, B, C, Task<TResult>> f, A a, B b, C c)
+      {
+         return m.MapFailure(t => f(t, a, b, c));
+      }
+
+      // MAP FAILURE EX #1
+
+      public static async Task<Result<T, TResult>> MapFailure<T, A, TFailure, TResult>(this Task<Result<T, TFailure>> m, Func<TFailure, A, TResult> f, A a)
+      {
+         return (await m).MapFailure(t => f(t, a));
+      }
+
+      public static async Task<Result<T, TResult>> MapFailure<T, A, B, TFailure, TResult>(this Task<Result<T, TFailure>> m, Func<TFailure, A, B, TResult> f, A a, B b)
+      {
+         return (await m).MapFailure(t => f(t, a, b));
+      }
+
+      public static async Task<Result<T, TResult>> MapFailure<T, A, B, C, TFailure, TResult>(this Task<Result<T, TFailure>> m, Func<TFailure, A, B, C, TResult> f, A a, B b, C c)
+      {
+         return (await m).MapFailure(t => f(t, a, b, c));
+      }
+
+      // MAP FAILURE #2
+
+      public static async Task<Result<T, TResult>> MapFailure<T, A, TFailure, TResult>(this Task<Result<T, TFailure>> m, Func<TFailure, A, Task<TResult>> f, A a)
+      {
+         return await (await m).MapFailure(t => f(t, a));
+      }
+
+      public static async Task<Result<T, TResult>> MapFailure<T, A, B, TFailure, TResult>(this Task<Result<T, TFailure>> m, Func<TFailure, A, B, Task<TResult>> f, A a, B b)
+      {
+         return await (await m).MapFailure(t => f(t, a, b));
+      }
+
+      public static async Task<Result<T, TResult>> MapFailure<T, A, B, C, TFailure, TResult>(this Task<Result<T, TFailure>> m, Func<TFailure, A, B, C, Task<TResult>> f, A a, B b, C c)
+      {
+         return await (await m).MapFailure(t => f(t, a, b, c));
+      }
+
+      // TEE FAILURE
+
+      public static Result<T, TFailure> TeeFailure<T, A, TFailure>(this Result<T, TFailure> m, Action<TFailure, A> f, A a)
+      {
+         return m.TeeFailure(t => f(t, a));
+      }
+
+      public static Result<T, TFailure> TeeFailure<T, A, B, TFailure>(this Result<T, TFailure> m, Action<TFailure, A, B> f, A a, B b)
+      {
+         return m.TeeFailure(t => f(t, a, b));
+      }
+
+      public static Result<T, TFailure> TeeFailure<T, A, B, C, TFailure>(this Result<T, TFailure> m, Action<TFailure, A, B, C> f, A a, B b, C c)
+      {
+         return m.TeeFailure(t => f(t, a, b, c));
+      }
+
+      // TEA FAILURE
+
+      public static Task<Result<T, TFailure>> TeaFailure<T, A, TFailure>(this Result<T, TFailure> m, Func<TFailure, A, Task> f, A a)
+      {
+         return m.TeaFailure(t => f(t, a));
+      }
+
+      public static Task<Result<T, TFailure>> TeaFailure<T, A, B, TFailure>(this Result<T, TFailure> m, Func<TFailure, A, B, Task> f, A a, B b)
+      {
+         return m.TeaFailure(t => f(t, a, b));
+      }
+
+      public static Task<Result<T, TFailure>> TeaFailure<T, A, B, C, TFailure>(this Result<T, TFailure> m, Func<TFailure, A, B, C, Task> f, A a, B b, C c)
+      {
+         return m.TeaFailure(t => f(t, a, b, c));
+      }
+
+      // TEE FAILURE EX
+
+      public static async Task<Result<T, TFailure>> TeeFailure<T, A, TFailure>(this Task<Result<T, TFailure>> m, Action<TFailure, A> f, A a)
+      {
+         return (await m).TeeFailure(t => f(t, a));
+      }
+
+      public static async Task<Result<T, TFailure>> TeeFailure<T, A, B, TFailure>(this Task<Result<T, TFailure>> m, Action<TFailure, A, B> f, A a, B b)
+      {
+         return (await m).TeeFailure(t => f(t, a, b));
+      }
+
+      public static async Task<Result<T, TFailure>> TeeFailure<T, A, B, C, TFailure>(this Task<Result<T, TFailure>> m, Action<TFailure, A, B, C> f, A a, B b, C c)
+      {
+         return (await m).TeeFailure(t => f(t, a, b, c));
+      }
+
+      // TEA FAILURE EX
+
+      public static async Task<Result<T, TFailure>> TeaFailure<T, A, TFailure>(this Task<Result<T, TFailure>> m, Func<TFailure, A, Task> f, A a)
+      {
+         return await (await m).TeaFailure(t => f(t, a));
+      }
+
+      public static async Task<Result<T, TFailure>> TeaFailure<T, A, B, TFailure>(this Task<Result<T, TFailure>> m, Func<TFailure, A, B, Task> f, A a, B b)
+      {
+         return await (await m).TeaFailure(t => f(t, a, b));
+      }
+
+      public static async Task<Result<T, TFailure>> TeaFailure<T, A, B, C, TFailure>(this Task<Result<T, TFailure>> m, Func<TFailure, A, B, C, Task> f, A a, B b, C c)
+      {
+         return await (await m).TeaFailure(t => f(t, a, b, c));
+      }
    }
 }
